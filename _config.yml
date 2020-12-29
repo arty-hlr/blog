@@ -1,3 +1,8 @@
 remote_theme: "mmistakes/minimal-mistakes@4.16.5"
 plugins:
     - jekyll-include-cache
+
+paginate: 5 # amount of posts to show
+paginate_path: /page:num/
+include:
+    - _pages
