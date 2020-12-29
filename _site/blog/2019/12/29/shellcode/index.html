@@ -1,0 +1,401 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.5 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Shellcode - arty-hlr</title>
+<meta name="description" content="Intro">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="arty-hlr">
+<meta property="og:title" content="Shellcode">
+<meta property="og:url" content="http://localhost:4000/blog/2019/12/29/shellcode/">
+
+
+  <meta property="og:description" content="Intro">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-12-29T00:00:00+01:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/blog/2019/12/29/shellcode/">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="arty-hlr Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          arty-hlr
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Shellcode">
+    <meta itemprop="description" content="Intro">
+    <meta itemprop="datePublished" content="December 29, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Shellcode
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#intro">Intro</a></li>
+  <li><a href="#shellcode-practice-journey">Shellcode practice journey</a></li>
+  <li><a href="#on-finding-syscall-numbers-and-creating-new-tools-in-bashpython">On finding syscall numbers and creating new tools in bash/python</a></li>
+  <li><a href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <h2 id="intro">Intro</h2>
+
+<p>So I was practicing my shellcode writing skills for <a href="https://www.elearnsecurity.com/course/exploit_development_student/">XDS</a> from eLearnSecurity, and as I was working through the first basic assembly examples, I realized searching for syscalls numbers for different architectures was pretty tedious, like what’s the syscall number for <code class="language-plaintext highlighter-rouge">execve</code> in the i386 or ARM architectures, or what’s the declaration for that function, or what are the registers and instructions used for that architecture? Looking around google and asking friends on our Discord server, we didn’t find anything helping with that, so I set out on writing my own, and spent the whole evening on it!</p>
+
+<p>I wanted to make a quick blog post about it to tell a bit about my shellcode practice journey, share that newly made tool, and maybe motivate other people to create tools when they see there isn’t any!</p>
+
+<h2 id="shellcode-practice-journey">Shellcode practice journey</h2>
+
+<p>As I am preparing for XDS and learning about ARM exploitation, I am writing shellcode by hand to practice assembly in different architectures, mainly i386, x86-64, ARM, and ARM64. I wanted to share a few resources for each over the next few weeks, starting with i386 today, and share my journey with shellcoding!</p>
+
+<p>I first learned about shellcoding in <a href="https://nostarch.com/hacking2.htm">Hacking, the Art of Exploitation</a> which I read and worked through partially almost two years ago when I got into hacking, that was actually my first hacking book! Apart from the very good <code class="language-plaintext highlighter-rouge">Programming</code> and <code class="language-plaintext highlighter-rouge">Exploitation</code> chapters, which do teach the basics both of C, assembly, and binary exploitation, one of the chapters is called <code class="language-plaintext highlighter-rouge">Shellcode</code>, and was my first contact with low-level stuff used in hacking such as shellcodes. Even if that book is nearly 12 years old, the concepts explained in it are still very much relevant to today’s binary exploitation landscape, and that includes the <code class="language-plaintext highlighter-rouge">Shellcode</code> chapter. It goes from basic naive shellcode ridden with null bytes to a TCP connect-back shellcode through debugging it with GDB and understanding how the whole thing works and what strategies to use to make your shellcode usable, and it was a great help in writing those shellcodes.</p>
+
+<p>I used that as well as the Linux shellcoding chapter of XDS as a base for my practice, but created quick helper scripts to assemble and link assembly code for x86 on a x64 machine, and create the bytes that shellcode really is. It’s usually put into a C code wrapper, but I decided to go with <code class="language-plaintext highlighter-rouge">nasm</code> and <code class="language-plaintext highlighter-rouge">ld</code> as it’s easy and quick to run them, and if I need to debug them, I can run the assembled and linked version. You’ll find those helper scripts <a href="https://github.com/arty-hlr/shellcode-practice">here</a>, for now under the <code class="language-plaintext highlighter-rouge">x86/linux</code> folder.</p>
+
+<p>Afer having written a naive shell spawning shellcode, a null-byte free one, a TCP reverse shell shellcode, and added permission keeping capabilities to the shell spawning shellcode to keep privileges, I am now going to write some x64 ones, and then dive into an egg hunter shellcode for linux as an advanced exercise. Follow that GitHub repo linked above for more info!</p>
+
+<h2 id="on-finding-syscall-numbers-and-creating-new-tools-in-bashpython">On finding syscall numbers and creating new tools in bash/python</h2>
+
+<p>Most tutorials on writing shellcode just tell you plain what number syscall is under the architecture you’re working in. Like they would tell you “Yeah so you need to call execve which is syscall number 0xb or 11”, which is great, but what if I have to use other syscalls for a custom shellcode, or what if I want to port that shellcode to another architecture? How am I supposed to find the information for that syscall or new architecture, by just googling for it for 10 minutes, or bookmarking one of the few websites that makes some information available, but then what if I have to work offline for some reason? Well I was not looking forward to that, and I wanted something quick, that would tell you right away the essential information for a given syscall and architecture, and there was nothing out there. So instead of wining about it for too long on Discord, I decided to get to work and write it myself. What I wanted would give me well the syscall number obviously, but the function declaration as well to know what arguments to pass to it, and while we’re at it why not give me which registers were used for those arguments depending on the architecture, and the instruction used for the syscall, and which register to stick the syscall number in; in short I wanted to see everything I could need to make that syscall, all in one tool.</p>
+
+<p>So I went on google and on <code class="language-plaintext highlighter-rouge">man</code> pages to look for information about syscalls, and I did find things, like <code class="language-plaintext highlighter-rouge">man syscalls</code> gives information about register and instructions, the <code class="language-plaintext highlighter-rouge">man</code> pages did give the C declaration, but for syscalls which were also bash commands like <code class="language-plaintext highlighter-rouge">read</code>, one had to go to the second <code class="language-plaintext highlighter-rouge">man</code> page to get the correct information, and I finally found out that <code class="language-plaintext highlighter-rouge">/usr/include/asm/unistd_(32|64).h</code> contained the information I wanted about the syscall number, but it was cumbersome parsing those files. That gave me a basic first script in bash, but I felt it was hacked together quickly and not very elegant:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$# </span><span class="nt">-lt</span> 2 <span class="o">]</span> 
+<span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"Usage: syscall -32/-64 &lt;syscall&gt;"</span>
+    <span class="nb">exit
+</span><span class="k">fi
+
+if</span> <span class="o">[</span> <span class="nv">$1</span> <span class="o">=</span> <span class="s1">'-32'</span> <span class="o">]</span>
+<span class="k">then
+    </span><span class="nv">file</span><span class="o">=</span><span class="s1">'unistd_32.h'</span>
+    <span class="nb">echo</span> <span class="s2">"syscall in eax"</span>
+    <span class="nb">echo</span> <span class="s2">"args in ebx, ecx, edx, esi, edi, ebp"</span>
+<span class="k">else
+    </span><span class="nv">file</span><span class="o">=</span><span class="s1">'unistd_64.h'</span>
+    <span class="nb">echo</span> <span class="s2">"syscall in rax"</span>
+    <span class="nb">echo</span> <span class="s2">"args in rdi, rsi, rdx, r10, r8, r9"</span>
+<span class="k">fi
+
+</span><span class="nv">n</span><span class="o">=</span><span class="si">$(</span><span class="nb">grep</span> <span class="s2">"_</span><span class="nv">$2</span><span class="s2"> "</span> /usr/include/asm/<span class="nv">$file</span> | <span class="nb">cut</span> <span class="nt">-d</span> <span class="s1">' '</span> <span class="nt">-f</span> 3<span class="si">)</span>
+<span class="nb">printf</span> <span class="s2">"0x%x - %d</span><span class="se">\n</span><span class="s2">"</span> <span class="nv">$n</span> <span class="nv">$n</span>
+
+<span class="nv">decl</span><span class="o">=</span><span class="si">$(</span>man <span class="nv">$2</span> | <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$2</span><span class="s2">("</span> | <span class="nb">head</span> <span class="nt">-1</span> | <span class="nb">cut</span> <span class="nt">-d</span> <span class="s1">';'</span> <span class="nt">-f</span> 1<span class="si">)</span>
+<span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nv">$decl</span> 2&gt; /dev/null <span class="o">]</span>
+<span class="k">then
+    </span><span class="nv">decl</span><span class="o">=</span><span class="si">$(</span>man <span class="nv">$2</span>.2 | <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$2</span><span class="s2">("</span> | <span class="nb">head</span> <span class="nt">-1</span> | <span class="nb">cut</span> <span class="nt">-d</span> <span class="s1">';'</span> <span class="nt">-f</span> 1<span class="si">)</span>
+<span class="k">fi
+</span><span class="nb">echo</span> <span class="nv">$decl</span>
+</code></pre></div></div>
+
+<p>And well it only gave me syscall numbers for i386 and x86-64 as even with the binutils packages installed for ARM and ARM64, I could not locate similar files, so I was a bit disappointed. When I finally stumbled upon a whole folder in the gdb documentation directory (don’t ask me how I found it, I don’t remember what I was searching for with that <code class="language-plaintext highlighter-rouge">locate</code> command haha) with an XML file for each architecture with numbers for each syscalls, I was in heaven! I knew I just had to parse that XML file to look for the syscall, which was pretty easy to do after diving for a few minutes in the documentation for the XML parsing python library, then I copied the info in <code class="language-plaintext highlighter-rouge">man syscall</code>, parsed it quickly in vim to make it like a dictionary, and I was done, I had all the information I needed! Here’s the full script:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/python3
+</span>
+<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="n">ET</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Usage: syscall &lt;arch&gt; &lt;syscall&gt;'</span><span class="p">)</span>
+    <span class="nb">exit</span><span class="p">()</span>
+
+<span class="n">infos</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'arm64'</span><span class="p">:(</span><span class="s">'aarch64-linux'</span><span class="p">,(</span><span class="s">'x0'</span><span class="p">,</span><span class="s">'x1'</span><span class="p">,</span><span class="s">'x2'</span><span class="p">,</span><span class="s">'x3'</span><span class="p">,</span><span class="s">'x4'</span><span class="p">,</span><span class="s">'x5'</span><span class="p">),(</span><span class="s">'svc #0'</span><span class="p">,</span><span class="s">'x8'</span><span class="p">,</span><span class="s">'x0'</span><span class="p">)),</span>
+    <span class="s">'x64'</span><span class="p">:(</span><span class="s">'amd64-linux'</span><span class="p">,(</span><span class="s">'rdi'</span><span class="p">,</span><span class="s">'rsi'</span><span class="p">,</span><span class="s">'rdx'</span><span class="p">,</span><span class="s">'r10'</span><span class="p">,</span><span class="s">'r8'</span><span class="p">,</span><span class="s">'r9'</span><span class="p">),(</span><span class="s">'syscall'</span><span class="p">,</span><span class="s">'rax'</span><span class="p">,</span><span class="s">'rax'</span><span class="p">)),</span>
+    <span class="s">'arm'</span><span class="p">:(</span><span class="s">'arm-linux'</span><span class="p">,(</span><span class="s">'r0'</span><span class="p">,</span><span class="s">'r1'</span><span class="p">,</span><span class="s">'r2'</span><span class="p">,</span><span class="s">'r3'</span><span class="p">,</span><span class="s">'r4'</span><span class="p">,</span><span class="s">'r5'</span><span class="p">),(</span><span class="s">'swi 0x0'</span><span class="p">,</span><span class="s">'r7'</span><span class="p">,</span><span class="s">'r0'</span><span class="p">)),</span>
+    <span class="s">'x86'</span><span class="p">:(</span><span class="s">'i386-linux'</span><span class="p">,(</span><span class="s">'ebx'</span><span class="p">,</span><span class="s">'ecx'</span><span class="p">,</span><span class="s">'edx'</span><span class="p">,</span><span class="s">'esi'</span><span class="p">,</span><span class="s">'edi'</span><span class="p">,</span><span class="s">'ebp'</span><span class="p">),(</span><span class="s">'int $0x80'</span><span class="p">,</span><span class="s">'eax'</span><span class="p">,</span><span class="s">'eax'</span><span class="p">)),</span>
+    <span class="s">'mips32'</span><span class="p">:(</span><span class="s">'mips-n32-linux'</span><span class="p">,(</span><span class="s">'a0'</span><span class="p">,</span><span class="s">'a1'</span><span class="p">,</span><span class="s">'a2'</span><span class="p">,</span><span class="s">'a3'</span><span class="p">,</span><span class="s">'a4'</span><span class="p">,</span><span class="s">'a5'</span><span class="p">),(</span><span class="s">'syscall'</span><span class="p">,</span><span class="s">'v0'</span><span class="p">,</span><span class="s">'v0'</span><span class="p">)),</span>
+    <span class="s">'mips64'</span><span class="p">:(</span><span class="s">'mips-n64-linux'</span><span class="p">,(</span><span class="s">'a0'</span><span class="p">,</span><span class="s">'a1'</span><span class="p">,</span><span class="s">'a2'</span><span class="p">,</span><span class="s">'a3'</span><span class="p">,</span><span class="s">'a4'</span><span class="p">,</span><span class="s">'a5'</span><span class="p">),(</span><span class="s">'syscall'</span><span class="p">,</span><span class="s">'v0'</span><span class="p">,</span><span class="s">'v0'</span><span class="p">)),</span>
+    <span class="s">'ppc64'</span><span class="p">:(</span><span class="s">'ppc-n64-linux'</span><span class="p">,(</span><span class="s">'r3'</span><span class="p">,</span><span class="s">'r4'</span><span class="p">,</span><span class="s">'r5'</span><span class="p">,</span><span class="s">'r6'</span><span class="p">,</span><span class="s">'r7'</span><span class="p">,</span><span class="s">'r8'</span><span class="p">),(</span><span class="s">'sc'</span><span class="p">,</span><span class="s">'r0'</span><span class="p">,</span><span class="s">'r3'</span><span class="p">)),</span>
+    <span class="s">'ppc'</span><span class="p">:(</span><span class="s">'ppc-n-linux'</span><span class="p">,(</span><span class="s">'r3'</span><span class="p">,</span><span class="s">'r4'</span><span class="p">,</span><span class="s">'r5'</span><span class="p">,</span><span class="s">'r6'</span><span class="p">,</span><span class="s">'r7'</span><span class="p">,</span><span class="s">'r8'</span><span class="p">),(</span><span class="s">'sc'</span><span class="p">,</span><span class="s">'r0'</span><span class="p">,</span><span class="s">'r3'</span><span class="p">)),</span>
+    <span class="s">'sparc64'</span><span class="p">:</span><span class="s">'sparch-n64-linux'</span><span class="p">,</span>
+    <span class="s">'sparc'</span><span class="p">:(</span><span class="s">'sparc-n-linux'</span><span class="p">,(</span><span class="s">'o0'</span><span class="p">,</span><span class="s">'o1'</span><span class="p">,</span><span class="s">'o2'</span><span class="p">,</span><span class="s">'o3'</span><span class="p">,</span><span class="s">'o4'</span><span class="p">,</span><span class="s">'o5'</span><span class="p">),(</span><span class="s">'t'</span><span class="p">,</span><span class="s">'0x10'</span><span class="p">,</span><span class="s">'g1'</span><span class="p">,</span><span class="s">'o0'</span><span class="p">)),</span>
+    <span class="s">'sparc64'</span><span class="p">:(</span><span class="s">'sparc-n-linux'</span><span class="p">,(</span><span class="s">'o0'</span><span class="p">,</span><span class="s">'o1'</span><span class="p">,</span><span class="s">'o2'</span><span class="p">,</span><span class="s">'o3'</span><span class="p">,</span><span class="s">'o4'</span><span class="p">,</span><span class="s">'o5'</span><span class="p">),(</span><span class="s">'t'</span><span class="p">,</span><span class="s">'0x6d'</span><span class="p">,</span><span class="s">'g1'</span><span class="p">,</span><span class="s">'o0'</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="n">arch</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="n">infos</span><span class="p">[</span><span class="n">arch</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">order</span> <span class="o">=</span> <span class="n">infos</span><span class="p">[</span><span class="n">arch</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">instruction_sys_ret</span> <span class="o">=</span> <span class="n">infos</span><span class="p">[</span><span class="n">arch</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span><span class="o">+</span><span class="s">'/syscalls/'</span><span class="o">+</span><span class="n">filename</span><span class="o">+</span><span class="s">'.xml'</span>
+
+<span class="n">syscall</span> <span class="o">=</span> <span class="n">ET</span><span class="p">.</span><span class="n">parse</span><span class="p">(</span><span class="s">'{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">filepath</span><span class="p">)).</span><span class="n">getroot</span><span class="p">().</span><span class="n">find</span><span class="p">(</span><span class="s">"./syscall[@name='{}']"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">name</span><span class="p">)).</span><span class="n">attrib</span><span class="p">[</span><span class="s">'number'</span><span class="p">]</span>
+<span class="n">declaration</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">check_output</span><span class="p">(</span><span class="s">'man {} | grep "{}(" | head -1 | cut -d ";" -f 1'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">name</span><span class="p">),</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">).</span><span class="n">decode</span><span class="p">().</span><span class="n">strip</span><span class="p">()</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">declaration</span><span class="p">:</span>
+    <span class="n">declaration</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">check_output</span><span class="p">(</span><span class="s">'man {}.2 | grep "{}(" | head -1 | cut -d ";" -f 1'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">name</span><span class="p">),</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">).</span><span class="n">decode</span><span class="p">().</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'For {}:'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">arch</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'The instruction is {}, the syscall register is {}, and the return register is {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="o">*</span><span class="n">instruction_sys_ret</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'The registers for the arguments are: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">', '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">order</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'The syscall is {}/{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">syscall</span><span class="p">)),</span><span class="n">syscall</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'The syscall function declaration is: </span><span class="se">\n</span><span class="s">{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">declaration</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>And here’s a sample output:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└──╼ $syscall x86 execve
+For x86:
+The instruction is int $0x80, the syscall register is eax, and the return register is eax
+The registers for the arguments are: ebx, ecx, edx, esi, edi, ebp
+The syscall is 0xb/11
+The syscall function declaration is:
+int execve(const char *path, char *const argv[], char *const envp[])
+</code></pre></div></div>
+
+<p>I was pretty happy with it, and I finally could set out on my shellcoding practice journey knowing I would have syscall info at the fingertips.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>In the end, I just wanted to describe the process and journey I went through to create those simple helper scripts to show people how they too can write tools and contribute to the infosec community by sharing it. I believe it is in the hacker spirit to create one’s own tools when they don’t exist, and I hope that inspired people to take the time to do that; on the one hand yes it does take some time to do research, but on the other hand you’ll learn so much about so many things in the process, and you’ll use your l33t scripting skills, or build them in the process!</p>
+
+<p>I am looking forward to my shellcoding practice journey, and I hope that inspired you to do so as well and learn more about assembly! Here are the GitHub repos I use for shellcode practice and for the syscall script:</p>
+
+<p><a href="https://github.com/arty-hlr/shellcode-practice">Shellcode practice</a></p>
+
+<p><a href="https://github.com/arty-hlr/syscall_info">syscall script</a></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-12-29T00:00:00+01:00">December 29, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Shellcode%20http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2019%2F12%2F29%2Fshellcode%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2019%2F12%2F29%2Fshellcode%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2019%2F12%2F29%2Fshellcode%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/2019/12/10/oscp/" class="pagination--pager" title="OSCP
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/blog/2019/12/10/oscp/" rel="permalink">OSCP
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">So, first blog post had to be about OSCP even if I passed it two months ago, or my buddies in the Infosec Prep discord server would be mad! So here we go, sh...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 arty-hlr. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

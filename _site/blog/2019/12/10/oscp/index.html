@@ -1,0 +1,386 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.5 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>OSCP - arty-hlr</title>
+<meta name="description" content="So, first blog post had to be about OSCP even if I passed it two months ago, or my buddies in the Infosec Prep discord server would be mad! So here we go, short(ish) review of PWK (the course), OSCP (the exam), what preparation I had, a few pieces of advice, and what’s next!">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="arty-hlr">
+<meta property="og:title" content="OSCP">
+<meta property="og:url" content="http://localhost:4000/blog/2019/12/10/oscp/">
+
+
+  <meta property="og:description" content="So, first blog post had to be about OSCP even if I passed it two months ago, or my buddies in the Infosec Prep discord server would be mad! So here we go, short(ish) review of PWK (the course), OSCP (the exam), what preparation I had, a few pieces of advice, and what’s next!">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-12-10T00:00:00+01:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/blog/2019/12/10/oscp/">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="arty-hlr Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          arty-hlr
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="OSCP">
+    <meta itemprop="description" content="So, first blog post had to be about OSCP even if I passed it two months ago, or my buddies in the Infosec Prep discord server would be mad! So here we go, short(ish) review of PWK (the course), OSCP (the exam), what preparation I had, a few pieces of advice, and what’s next!">
+    <meta itemprop="datePublished" content="December 10, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">OSCP
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#background-and-preparation-before">Background and preparation before</a></li>
+  <li><a href="#first-steps-in-pwk-labs">First steps in PWK labs</a></li>
+  <li><a href="#getting-tired-of-the-labs">Getting tired of the labs</a></li>
+  <li><a href="#focusing-on-weak-points">Focusing on weak points</a></li>
+  <li><a href="#working-on-the-buffer-overflow">Working on the buffer overflow</a></li>
+  <li><a href="#time-for-a-mockup-exam">Time for a mockup exam</a></li>
+  <li><a href="#exam-day">Exam day!</a></li>
+  <li><a href="#good-news">Good news!</a></li>
+  <li><a href="#conclusion">Conclusion</a></li>
+  <li><a href="#whats-next">What’s next</a></li>
+  <li><a href="#some-parting-advice">Some parting advice</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>So, first blog post had to be about OSCP even if I passed it two months ago, or my buddies in the Infosec Prep discord server would be mad! So here we go, short(ish) review of PWK (the course), OSCP (the exam), what preparation I had, a few pieces of advice, and what’s next!</p>
+
+<p><img src="https://raw.githubusercontent.com/arty-hlr/blog_posts/master/images/oscp_logo.png" alt="" /></p>
+
+<h2 id="background-and-preparation-before">Background and preparation before</h2>
+
+<p>I started getting in the infosec world in January 2018, coming from a mathematics background with almost no programming experience. Along the way I picked up good Linux knowledge, C, python, and did quite a few CTFs. So that was me before the summer 2019, some CTF experience, some programming experience, but no “hacking a machine” experience.</p>
+
+<p>I didn’t have in mind at all to go through OSCP this year back during the summer, but I got started on HTB anyway, and got to pro hacker rank by August, so I had 10 HTB machines, mostly active), under my belt by the end of August, thanks to <a href="https://www.youtube.com/channel/UCa6eh7gCkpPo5XXUDfygQQA">Ippsec</a> basically, and also thanks to the huge community on HTB’s official Discord server who gave me tips and nudges when needed.</p>
+
+<p>So that was my “preparation”, between quotes because even mid-August I had no idea I was gonna be signing up for OSCP in a few weeks time! But well at that point in time I was talking with a recruiter on Discord who said that he would have jobs for me in Europe with OSCP, so that got me thinking, got me motivated to try my hand at the huge beast I thought OSCP was, realized I had one month free before the start of my university year, so I gathered why not, and on the 8th of September I received my access to PWK!</p>
+
+<h2 id="first-steps-in-pwk-labs">First steps in PWK labs</h2>
+
+<p>Sunday morning after receiving the VPN access I went straight into the labs while browsing through the PDF quickly, I was fairly comfortable with most subjects and I wanted to get a taste of the labs. I wasn’t disappointed at first, got a list of all hosts’ IPs, and started playing with the first one on the list, which went ok as it was fairly easy, but isn’t what I’d recommend really. We have a bot on the Infosec Prep server that tells how difficult a machine is and whether or not it has dependencies, meaning machines you should root before, and I relied on it to see which machine I wanted to try after, but the best idea would have been to do a sweep of all hosts looking for low-hanging fruits like Samba and other ports holding usually vulnerable services.</p>
+
+<p>I was going full-time on PWK, not having anything else to do with uni, so I must have spent around 8-9 hours a day in the labs the first two weeks, and rooted about 10 boxes a week (not that numbers matter anyway actually). I had great fun, even if some machines were pretty frustrating (when you see some bad documentation in French in the labs, you’ll understand), but it was ok, and having the community being there too was great. Did I mention that I started the labs along with two other guys from that discord server? Having people around who are doing it at the same time as you are is great, creates bonds on a period of 1-2 months of constant daily messages!</p>
+
+<h2 id="getting-tired-of-the-labs">Getting tired of the labs</h2>
+
+<p>Two weeks in, I was getting tired of the PWK labs to be honest, and I won’t hide that. Some machines were easy as common credentials, all are old a* f***, so old that kernel exploits work on a lot of them, but you’d have to compile them on old VMs, which was a pain. Maybe I should have looked more at privilege escalation routes that didn’t use kernel exploits, more than the few times I did, but I was growing tired of the age of the lab and how some machines were really buggy sometimes. I was not looking forward to the next machine on my to-do list, and I needed something fresh. I was longing to go back to HTB as well, since I had focused solely on PWK for the last two weeks, so I decided to go back there and take a break from the PWK labs.</p>
+
+<p><img src="https://raw.githubusercontent.com/arty-hlr/blog_posts/master/images/oscp_htb_logo.png" alt="Back to HTB!" /></p>
+
+<p>That was probably one of the best decisions I’ve made during my preparation for the exam, taking a break from PWK and working on other sources and other stuff more relevant to the exam. I knew pivoting was part of PWK for example, and I did try that a bit, but it didn’t interest me that much and I knew I wouldn’t have to pivot in the exam, so scratch that. Instead I took the list of OSCP-like HTB machines, and went through that.</p>
+
+<p><img src="https://raw.githubusercontent.com/arty-hlr/blog_posts/master/images/oscp_htb_machines.jpg" alt="List of OSCP-like machines" /></p>
+
+<p>That got me motivated again, and it taught me a lot as well. One thing I should emphasize is that I was taking detailed notes in markdown for each machine to have and go through later, and as a preparation for the exam report. I didn’t do the exercises, so no lab report for me (not worth it anyway, going through all the exercises and document them, and documenting 10 machines that have different types of vulns is way too much work for a poor 5 points in my opinion and prepping you for failing on the exam, more on that later), so I could focus on hacking machines.</p>
+
+<h2 id="focusing-on-weak-points">Focusing on weak points</h2>
+
+<p>At that 3 weeks/one month point, I made a list of what I was good at, and what I wasn’t so good at compared to the PWK syllabus, and decided to take a break from hacking machines and instead work more specifically on my weak points, which were SQL injections, Windows in general, and privilege escalation on Windows. So I worked on <a href="https://portswigger.net/web-security">Portswigger</a>’s SQL labs, which helped a lot, and downloaded the <a href="https://github.com/sagishahar/lpeworkshop">lpeworkshop</a>, which was a great decision. The slides and PDFs are quite dry and usually just show what the vulnerability is and how to exploit it, and sometimes even with GUI tools, so I decided to take it as a lab machine, and make notes on how to find and exploit each vulnerability lab style, that means from a reverse shell that I would have gotten from another exploit. That was very rewarding work, even if it took some time (as I’m nice <a href="https://github.com/arty-hlr/privesc_notes">here</a> are those notes) and I learned a lot especially about Windows. When tib3rius from the Infosec Prep server announced his Linux privesc Udemy course, I got it as well as I thought it would be helpful in going through everything again, and it definitely was, and not expensive at all, <a href="https://www.udemy.com/course/linux-privilege-escalation/">here</a>’s the link to it.</p>
+
+<p>It was around that time as well that I tried out tib3rius’ <a href="https://github.com/Tib3rius/AutoRecon">autorecon</a> tool to automate the initial enumeration phase of the exam. I wasn’t convinced at all at the start, but it was a wise decision to use it as it’s very helpful to speed up the enumeration part, just launch it, let it work and do the things you would have done anyway like gobuster or nikto, and when it’s done just go through its results. For situations like OSCP when time is counted and you can do something useful during the time autorecon takes, definitely very useful.</p>
+
+<p>It’s also around that time that I decided to schedule my exam, I knew spots were booked early, so I wanted to have mine well before exam time. I booked a Wednesday mid-October at 7 am, I wanted to be fresh and not waste waking hours not on the exam, and I was clearly going in with the idea that I would do an all-nighter and work on the exam the full 24 hours.</p>
+
+<h2 id="working-on-the-buffer-overflow">Working on the buffer overflow</h2>
+
+<p>I had pushed back working on the buffer overflow (BOF for short) because that was something I had done in the past thanks to Jon Erickon’s <a href="https://nostarch.com/hacking2.htm">book</a> <code class="language-plaintext highlighter-rouge">Hacking, the Art of Exploitation</code>, and I knew I just needed to get used to it on Windows and above all get familiar and comfortable with Immunity. That took a bit of time, but it was great discovering Immunity and mona (DO read its <a href="https://www.corelan.be/index.php/2011/07/14/mona-py-the-manual/">documentation</a>, great tool, learn to use it), and I wrote a skeleton script for the exam BOF to gain some time. I basically just had to comment and uncomment code and go through it step by step, and it saved me a lot of time writing code on the exam (I’m nice, but providing it to you wouldn’t help you really, instead just do what I did and write your own!). Here are some resources I used for the BOF preparation:</p>
+
+<ul>
+  <li><a href="https://github.com/justinsteven/dostackbufferoverflowgood">dostackoverflowgood</a> (very basic though)</li>
+  <li><a href="https://github.com/stephenbradshaw/vulnserver">vulnserver</a>’s TRUN</li>
+  <li>SLMail (described in the PWK PDF)</li>
+</ul>
+
+<p>Once that BOF practice was done I felt a bit more ready for the exam, at least I knew I had covered every point in the syllabus.</p>
+
+<h2 id="time-for-a-mockup-exam">Time for a mockup exam</h2>
+
+<p>That was an idea I had as I wasn’t feeling really ready for OSCP yet and I had around 1-2 weeks left before the actual exam, so I decided to take a few VulnHub and HTB machines along with a BOF, and see if in two days, so 2x12 hours, I could get them. I didn’t choose good machines for mine, as two of them were too easy, and two of them were too hard, so I won’t be recommending them, but the BOF I used (FreeFloatFTP) made me confident my skeleton script was ok, and it made me get used to OBS for recording, taking screenshots, and logging my terminals with tmux (here’s the <a href="https://github.com/tmux-plugins/tmux-logging">plugin</a>). So overall a good prep at least logistically, and it made me realize I was missing a tool as well, and obviously I learned some from the two harder boxes as well, so it wasn’t time wasted anyway.</p>
+
+<p>Basically just choose 4 machines randomly from easy/medium machines from VulnHub/HTB plus one vanilla BOF, and you’ll be fine.</p>
+
+<h2 id="exam-day">Exam day!</h2>
+
+<p>Wednesday came, and with it the OSCP exam. I had gone to bed early the day before to be fresh on D-day, and I had set up everything I needed for the exam. I woke up at 6:30 am, had the verification steps with the proctor at 6:45, prepared breakfast, then finished eating it while reading through the instructions and launching autorecon for the enumeration. I then got to work on the BOF, and by 7:45 am I got it along with my first 25 points!</p>
+
+<p>From then I focused on the 20 and 25 pointers, and shell by shell by 11 am I had enough points for passing, which surprised me a lot. I was only lacking the privesc on the 25 pointer, so that made around 85 points secured. I then had a break, a nice lunch, and began working on the report as I couldn’t get anything from that 25 pointer. I went through my OBS recordings, gathered screenshots, and made sure I had everything I needed before killing the VPN connection.</p>
+
+<p>Overall the exam was really fun, way easier than I expected (so I didn’t have to pull an all-nighter), and the proctors were nice, even though they use messages when you announce you take a break or come back from one that sound like they’re from a premade list haha.</p>
+
+<p>I went to bed that evening confident I had everything for the report, and thankful the exam was over!</p>
+
+<p>Thursday was report writing, I used markdown for my report (obviously was writing it in vim) and <a href="https://github.com/noraj/OSCP-Exam-Report-Template-Markdown">that</a> template, which was really easy to use. Compiling the report to PDF with pandoc was a breeze, and I loved not having to write it in MS Office or OpenOffice, that was a nice but long experience. By evening I had finished it with around 40 pages, read it over 3 (three) times (and glad I did because one of my proof screenshots was missing something!) and I uploaded it and sent the email with the link on that Thursday evening!</p>
+
+<h2 id="good-news">Good news!</h2>
+
+<p>I was making myself not check my emails every ten minutes as I knew it would take around 10 (ten is a lot when you’re waiting for the result haha) business days for them to come back to me with the results. Which is why it was a very nice surprise on the Saturday morning, so barely 36 hours after having submitted my report, to get <em>that</em> email announcing I had passed!</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Overall it was a very fun month and half preparing for OSCP, and it definitely helped in the job searching I’ve done since with a recruiter, but I’d only half-heartedly recommend it. It is definitely outdated, and I learned more from HTB than I did from the PWK labs, that’s for sure, even though people will argue that no matter how old the machines, the point is to get the methodology, that’s not completely true in my opinion, and getting exposure to more recent OSes is good, be it only to have to use Powershell more, and kill the fact that all the machines or almost are vulnerable to kernel exploits due to their age.</p>
+
+<p>One other thing to underline is that OSCP is missing a big part of what was useful when I took the technical tests later for interviews of positions as a junior pentester, namely focus on web attacks. There maybe a few sentences on SQLi and XSS in the PDF, but the focus is on finding public exploits, not on exploiting XSS in a website, which was exactly what was asked of me in most technical tests.</p>
+
+<p>To conclude, I’d say OSCP is very fun although outdated, and <strong>is</strong> recognized by companies, recruiters and HR, so those four letters on your CV <em>will</em> help you get interviews for penetration tester positions, but as real preparation for a pentester position, I feel eLearnSecurity WAPT is much more adapted, being full web black box attacks. So choose OSCP for the recognition, but choose other certs like eLearnSecurity, or just learn on the internet, for knowledge.</p>
+
+<h2 id="whats-next">What’s next</h2>
+
+<p>I’m pretty lucky to have found a position as a security consultant with a focus on IoT reversing within one month of looking for a job (thanks OSCP and above all that awesome recruiter I was working with!), and I decided in early December before getting that offer to take on XDS an WAPT from eLearnSecurity, so there’s that for the next few months, plus starting with the job, so I’ll be pretty busy. I don’t plan on taking any other OffSec certs in the near future as OSCE is really outdated, OSWE is code reviewing in languages I’m not familiar with, but I’m looking forward to get more courses options from work, with probably some about ARM exploitaiton and more generally IoT security, and maybe one day SANS 760, who knows!</p>
+
+<h2 id="some-parting-advice">Some parting advice</h2>
+
+<ul>
+  <li>Go for low-hanging fruits by doing a full hosts scan in the PWK labs</li>
+  <li>Use HTB and other labs as well</li>
+  <li>Don’t do the lab report (unless you have time to kill)</li>
+  <li>Use autorecon in the exam while doing the BOF</li>
+  <li>Do a mockup exam to get used to the format and logistics of the exam</li>
+  <li>Manage your time well in the exam</li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-12-10T00:00:00+01:00">December 10, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=OSCP%20http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2019%2F12%2F10%2Foscp%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2019%2F12%2F10%2Foscp%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2019%2F12%2F10%2Foscp%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/blog/2019/12/29/shellcode/" class="pagination--pager" title="Shellcode
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/blog/2019/12/29/shellcode/" rel="permalink">Shellcode
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">Intro
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 arty-hlr. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
