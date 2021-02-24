@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Shellcode - arty-hlr</title>
-<meta name="description" content="Intro">
+<meta name="description" content="So I was practicing my shellcode writing skills for XDS from eLearnSecurity, and as I was working through the first basic assembly examples, I realized searching for syscalls numbers for different architectures was pretty tedious, like what’s the syscall number for execve in the i386 or ARM architectures, or what’s the declaration for that function, or what are the registers and instructions used for that architecture? Looking around google and asking friends on our Discord server, we didn’t find anything helping with that, so I set out on writing my own, and spent the whole evening on it!">
 
 
 
@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://localhost:4000/blog/2019/12/29/shellcode/">
 
 
-  <meta property="og:description" content="Intro">
+  <meta property="og:description" content="So I was practicing my shellcode writing skills for XDS from eLearnSecurity, and as I was working through the first basic assembly examples, I realized searching for syscalls numbers for different architectures was pretty tedious, like what’s the syscall number for execve in the i386 or ARM architectures, or what’s the declaration for that function, or what are the registers and instructions used for that architecture? Looking around google and asking friends on our Discord server, we didn’t find anything helping with that, so I set out on writing my own, and spent the whole evening on it!">
 
 
 
@@ -149,7 +149,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Shellcode">
-    <meta itemprop="description" content="Intro">
+    <meta itemprop="description" content="So I was practicing my shellcode writing skills for XDS from eLearnSecurity, and as I was working through the first basic assembly examples, I realized searching for syscalls numbers for different architectures was pretty tedious, like what’s the syscall number for execve in the i386 or ARM architectures, or what’s the declaration for that function, or what are the registers and instructions used for that architecture? Looking around google and asking friends on our Discord server, we didn’t find anything helping with that, so I set out on writing my own, and spent the whole evening on it!">
     <meta itemprop="datePublished" content="December 29, 2019">
     
 
@@ -168,7 +168,6 @@
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
               <ul class="toc__menu">
-  <li><a href="#intro">Intro</a></li>
   <li><a href="#shellcode-practice-journey">Shellcode practice journey</a></li>
   <li><a href="#on-finding-syscall-numbers-and-creating-new-tools-in-bashpython">On finding syscall numbers and creating new tools in bash/python</a></li>
   <li><a href="#conclusion">Conclusion</a></li>
@@ -176,9 +175,7 @@
             </nav>
           </aside>
         
-        <h2 id="intro">Intro</h2>
-
-<p>So I was practicing my shellcode writing skills for <a href="https://www.elearnsecurity.com/course/exploit_development_student/">XDS</a> from eLearnSecurity, and as I was working through the first basic assembly examples, I realized searching for syscalls numbers for different architectures was pretty tedious, like what’s the syscall number for <code class="language-plaintext highlighter-rouge">execve</code> in the i386 or ARM architectures, or what’s the declaration for that function, or what are the registers and instructions used for that architecture? Looking around google and asking friends on our Discord server, we didn’t find anything helping with that, so I set out on writing my own, and spent the whole evening on it!</p>
+        <p>So I was practicing my shellcode writing skills for <a href="https://www.elearnsecurity.com/course/exploit_development_student/">XDS</a> from eLearnSecurity, and as I was working through the first basic assembly examples, I realized searching for syscalls numbers for different architectures was pretty tedious, like what’s the syscall number for <code class="language-plaintext highlighter-rouge">execve</code> in the i386 or ARM architectures, or what’s the declaration for that function, or what are the registers and instructions used for that architecture? Looking around google and asking friends on our Discord server, we didn’t find anything helping with that, so I set out on writing my own, and spent the whole evening on it!</p>
 
 <p>I wanted to make a quick blog post about it to tell a bit about my shellcode practice journey, share that newly made tool, and maybe motivate other people to create tools when they see there isn’t any!</p>
 
@@ -327,7 +324,8 @@ int execve(const char *path, char *const argv[], char *const envp[])
 ">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="/blog/2020/12/15/ecxd/" class="pagination--pager" title="eLearnSecurity Certified eXploit Developer
+">Next</a>
     
   </nav>
 
@@ -351,12 +349,73 @@ int execve(const char *path, char *const argv[], char *const envp[])
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="/blog/2019/12/10/oscp/" rel="permalink">OSCP
+        <a href="/2021/02/24/blue-team.html" rel="permalink">Blue Team
 </a>
       
     </h2>
     
-    <p class="archive__item-excerpt" itemprop="description">So, first blog post had to be about OSCP even if I passed it two months ago, or my buddies in the Infosec Prep discord server would be mad! So here we go, sh...</p>
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/2021/02/15/crte.html" rel="permalink">Crte
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/2021/02/01/ewptx.html" rel="permalink">Ewptx
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/blog/2020/12/25/offshore/" rel="permalink">Offshore
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">My journey through HTB’s Offshore Pro Lab!
+</p>
   </article>
 </div>
 

