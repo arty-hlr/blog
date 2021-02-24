@@ -1,5 +1,5 @@
 ---
-title: OSCP
+title: OSCP Review
 layout: single
 categories: [blog]
 permalink: /:categories/:year/:month/:day/:title/

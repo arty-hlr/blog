@@ -1,5 +1,5 @@
 ---
-title: eLearnSecurity Certified eXploit Developer
+title: eLearnSecurity Certified eXploit Developer Review
 layout: single
 categories: [blog]
 permalink: /:categories/:year/:month/:day/:title/

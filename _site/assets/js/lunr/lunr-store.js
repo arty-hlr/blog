@@ -19,18 +19,8 @@ var store = [{
         "tags": [],
         "url": "http://localhost:4000/blog/2020/12/25/offshore/",
         "teaser":null},{
-        "title": "Ewptx",
-        "excerpt":" ","categories": [],
+        "title": "CRTE Bootcamp",
+        "excerpt":"After a friend of mine went through CRTP, and my Offshore experience, I felt like I wanted to go further with windows and AD stuff in general, and consolidate what I had learnt during Offshore. That was about the time PentesterAcademy announced they were launching bootcamps, the first for AD...","categories": ["blog"],
         "tags": [],
-        "url": "http://localhost:4000/2021/02/01/ewptx.html",
-        "teaser":null},{
-        "title": "Crte",
-        "excerpt":" ","categories": [],
-        "tags": [],
-        "url": "http://localhost:4000/2021/02/15/crte.html",
-        "teaser":null},{
-        "title": "Blue Team",
-        "excerpt":" ","categories": [],
-        "tags": [],
-        "url": "http://localhost:4000/2021/02/24/blue-team.html",
+        "url": "http://localhost:4000/blog/2021/02/15/crte/",
         "teaser":null}]

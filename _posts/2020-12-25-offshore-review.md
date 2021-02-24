@@ -1,5 +1,5 @@
 ---
-title: Offshore
+title: Offshore Review
 layout: single
 categories: [blog]
 permalink: /:categories/:year/:month/:day/:title/
