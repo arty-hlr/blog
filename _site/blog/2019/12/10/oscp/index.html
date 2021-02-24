@@ -121,6 +121,13 @@
               <a href="/about/" >About</a>
             </li></ul>
         
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle menu</span>
           <div class="navicon"></div>
@@ -178,7 +185,7 @@
         
         <p>So, first blog post had to be about OSCP even if I passed it two months ago, or my buddies in the Infosec Prep discord server would be mad! So here we go, short(ish) review of PWK (the course), OSCP (the exam), what preparation I had, a few pieces of advice, and what’s next!</p>
 
-<p><img src="https://raw.githubusercontent.com/arty-hlr/blog_posts/master/images/oscp_logo.png" alt="" /></p>
+<p><img src="https://github.com/pages/arty-hlr/blog/asssets/images/oscp_logo.png" alt="" /></p>
 
 <h2 id="background-and-preparation-before">Background and preparation before</h2>
 
@@ -198,11 +205,11 @@
 
 <p>Two weeks in, I was getting tired of the PWK labs to be honest, and I won’t hide that. Some machines were easy as common credentials, all are old a* f***, so old that kernel exploits work on a lot of them, but you’d have to compile them on old VMs, which was a pain. Maybe I should have looked more at privilege escalation routes that didn’t use kernel exploits, more than the few times I did, but I was growing tired of the age of the lab and how some machines were really buggy sometimes. I was not looking forward to the next machine on my to-do list, and I needed something fresh. I was longing to go back to HTB as well, since I had focused solely on PWK for the last two weeks, so I decided to go back there and take a break from the PWK labs.</p>
 
-<p><img src="https://raw.githubusercontent.com/arty-hlr/blog_posts/master/images/oscp_htb_logo.png" alt="Back to HTB!" /></p>
+<p><img src="https://github.com/pages/arty-hlr/blog/asssets/images/oscp_htb_logo.png" alt="Back to HTB!" /></p>
 
 <p>That was probably one of the best decisions I’ve made during my preparation for the exam, taking a break from PWK and working on other sources and other stuff more relevant to the exam. I knew pivoting was part of PWK for example, and I did try that a bit, but it didn’t interest me that much and I knew I wouldn’t have to pivot in the exam, so scratch that. Instead I took the list of OSCP-like HTB machines, and went through that.</p>
 
-<p><img src="https://raw.githubusercontent.com/arty-hlr/blog_posts/master/images/oscp_htb_machines.jpg" alt="List of OSCP-like machines" /></p>
+<p><img src="https://github.com/pages/arty-hlr/blog/asssets/images/oscp_htb_machines.jpg" alt="List of OSCP-like machines" /></p>
 
 <p>That got me motivated again, and it taught me a lot as well. One thing I should emphasize is that I was taking detailed notes in markdown for each machine to have and go through later, and as a preparation for the exam report. I didn’t do the exercises, so no lab report for me (not worth it anyway, going through all the exercises and document them, and documenting 10 machines that have different types of vulns is way too much work for a poor 5 points in my opinion and prepping you for failing on the exam, more on that later), so I could focus on hacking machines.</p>
 
@@ -348,6 +355,17 @@
     </div>
 
     
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
 
     <div id="footer" class="page__footer">
       <footer>
@@ -364,7 +382,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2020 arty-hlr. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2021 arty-hlr. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
@@ -375,6 +393,10 @@
 
 
 
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
 
 
 
