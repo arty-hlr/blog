@@ -12,6 +12,11 @@ So, first blog post had to be about OSCP even if I passed it two months ago, or 
 
 ![]({{site.url}}/assets/images/oscp_logo.png)
 
+## UPDATE 25.02.21
+
+This post refers to the PWK v1, since I took the course and exam, PWK v2 aka [PEN-200](https://www.offensive-security.com/pwk-oscp/) was released, with more information than v1, especially some AD stuff, and updated labs, so so I've heard. So take what follows with a grain of salt!
+
+
 ## Background and preparation before
 
 I started getting in the infosec world in January 2018, coming from a mathematics background with almost no programming experience. Along the way I picked up good Linux knowledge, C, python, and did quite a few CTFs. So that was me before the summer 2019, some CTF experience, some programming experience, but no "hacking a machine" experience.
