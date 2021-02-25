@@ -1,6 +1,7 @@
 ---
 layout: single
 categories: [blog]
+title: Shellcode writing and new tools
 permalink: /:categories/:year/:month/:day/:title/
 classes: wide
 toc: true
