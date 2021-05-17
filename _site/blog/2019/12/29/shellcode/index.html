@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Shellcode - arty-hlr</title>
+<!-- begin _includes/seo.html --><title>Shellcode writing and new tools - arty-hlr</title>
 <meta name="description" content="So I was practicing my shellcode writing skills for XDS from eLearnSecurity, and as I was working through the first basic assembly examples, I realized searching for syscalls numbers for different architectures was pretty tedious, like what’s the syscall number for execve in the i386 or ARM architectures, or what’s the declaration for that function, or what are the registers and instructions used for that architecture? Looking around google and asking friends on our Discord server, we didn’t find anything helping with that, so I set out on writing my own, and spent the whole evening on it!">
 
 
@@ -17,7 +17,7 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="arty-hlr">
-<meta property="og:title" content="Shellcode">
+<meta property="og:title" content="Shellcode writing and new tools">
 <meta property="og:url" content="http://localhost:4000/blog/2019/12/29/shellcode/">
 
 
@@ -148,7 +148,7 @@
   
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Shellcode">
+    <meta itemprop="headline" content="Shellcode writing and new tools">
     <meta itemprop="description" content="So I was practicing my shellcode writing skills for XDS from eLearnSecurity, and as I was working through the first basic assembly examples, I realized searching for syscalls numbers for different architectures was pretty tedious, like what’s the syscall number for execve in the i386 or ARM architectures, or what’s the declaration for that function, or what are the registers and instructions used for that architecture? Looking around google and asking friends on our Discord server, we didn’t find anything helping with that, so I set out on writing my own, and spent the whole evening on it!">
     <meta itemprop="datePublished" content="December 29, 2019">
     
@@ -156,7 +156,7 @@
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Shellcode
+          <h1 id="page-title" class="page__title" itemprop="headline">Shellcode writing and new tools
 </h1>
           
         </header>
@@ -309,7 +309,7 @@ int execve(const char *path, char *const argv[], char *const envp[])
       <section class="page__share">
   
 
-  <a href="https://twitter.com/intent/tweet?text=Shellcode%20http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2019%2F12%2F29%2Fshellcode%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Shellcode+writing+and+new+tools%20http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2019%2F12%2F29%2Fshellcode%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2019%2F12%2F29%2Fshellcode%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
@@ -320,11 +320,11 @@ int execve(const char *path, char *const argv[], char *const envp[])
       
   <nav class="pagination">
     
-      <a href="/blog/2019/12/10/oscp/" class="pagination--pager" title="OSCP
+      <a href="/blog/2019/12/10/oscp-review/" class="pagination--pager" title="OSCP Review
 ">Previous</a>
     
     
-      <a href="/blog/2020/12/15/ecxd/" class="pagination--pager" title="eLearnSecurity Certified eXploit Developer
+      <a href="/blog/2020/12/15/ecxd-review/" class="pagination--pager" title="eLearnSecurity Certified eXploit Developer Review
 ">Next</a>
     
   </nav>
@@ -349,7 +349,28 @@ int execve(const char *path, char *const argv[], char *const envp[])
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="/blog/2021/02/15/crte/" rel="permalink">CRTE Bootcamp
+        <a href="/blog/2021/05/06/how-to-bypass-defender/" rel="permalink">How to bypass Defender in a few easy steps
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">Context
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/blog/2021/02/15/crte-review/" rel="permalink">CRTE Bootcamp Review
 </a>
       
     </h2>
@@ -368,7 +389,7 @@ int execve(const char *path, char *const argv[], char *const envp[])
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="/blog/2020/12/25/offshore/" rel="permalink">Offshore
+        <a href="/blog/2020/12/25/offshore-review/" rel="permalink">Offshore Review
 </a>
       
     </h2>
@@ -388,32 +409,13 @@ int execve(const char *path, char *const argv[], char *const envp[])
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="/blog/2020/12/15/ecxd/" rel="permalink">eLearnSecurity Certified eXploit Developer
+        <a href="/blog/2020/12/15/ecxd-review/" rel="permalink">eLearnSecurity Certified eXploit Developer Review
 </a>
       
     </h2>
     
     <p class="archive__item-excerpt" itemprop="description">A review of the XDS course/eCXD exam by eLS
 </p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/blog/2019/12/10/oscp/" rel="permalink">OSCP
-</a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">So, first blog post had to be about OSCP even if I passed it two months ago, or my buddies in the Infosec Prep discord server would be mad! So here we go, sh...</p>
   </article>
 </div>
 
