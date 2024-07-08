@@ -5,6 +5,7 @@ categories: [blog]
 permalink: /:categories/:year/:month/:day/:title/
 classes: wide
 toc: true
+date: 2019-12-10 00:00:00
 show_date: true
 ---
 
