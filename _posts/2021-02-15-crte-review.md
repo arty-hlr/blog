@@ -16,7 +16,7 @@ The bootcamp consisted of 4 sessions of 3 hours on Zoom with [Nikhil](https://tw
 
 It started pretty easy, and probably a good deal of overlap with CRTP, but quickly went into Exchange, MSSQL, and Azure related attacks, plus a lot of cross-domain and cross-forest specific attacks. Overall the materials were very good and well explained, and having live sessions and access to the Discord server meant we could ask questions and have Nikhil answer them pretty quickly, and have some connection to the other people taking the bootcamp. The 3-hours sessions were long and strenuous sometimes, but having the recording meant we could go through them with the slides again at our own pace along with the lab during the week, which was very nice. Also, we got to see Nikhil drawing live:
 
-![Nikhil explaining database links]({{site.url}}/assets/images/nikhil-drawing.png)
+![Nikhil explaining database links]({{site.url}}/blog/assets/images/nikhil-drawing.png)
 
 # Labs
 
@@ -24,7 +24,7 @@ We also had 30 days of access to the CRTE labs (or something that resembles the 
 
 At the end of the labs, we had gone through several domains and forests, trusts and links all around them, and the paths we took looked like that: (blurred to hide machine names and actual attacks)
 
-![CRTE labs attack paths]({{site.url}}/assets/images/crte-labs.png)
+![CRTE labs attack paths]({{site.url}}/blog/assets/images/crte-labs.png)
 
 Having such a detailed lab manual was a blessing and a curse at the same time though, it was easy to refer to it or the slides for commands, tools, or particular abuses, but I procrastinated doing the labs a lot. Comparing with my Offshore experience, where there was 0 lab manual, I think I was not used to being spoon-fed the lab, and wanted to have to try harder, had to fight that a bit. In the end I completed the whole lab the manual way, and did it again on the last few days of our lab access using Covenant, which taught me a lot I could have used during Offshore!
 

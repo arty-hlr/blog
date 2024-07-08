@@ -89,7 +89,7 @@ Total domain pwnage! I had owned all offshore domains... and was still missing a
 
 24th of December, 3 PM, all domain flags in the pocket, getting ready for Christmas cooking... and still lacking one linux machine! This one turned up to be a bit of a closed beast, but was a very nice programming challenge, and I enjoyed writing the script to get the privesc on it, but that was on the 25th. So in the end Offshore completed, just on Christmas day :D And a nice certificate as a gift!
 
-![Offshore Certificate]({{site.url}}/assets/images/offshore-certificate.png)
+![Offshore Certificate]({{site.url}}/blog/assets/images/offshore-certificate.png)
 
 # Review
 

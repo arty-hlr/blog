@@ -89,7 +89,7 @@ So if I can't obfuscate enough a C# executable, or go around the heuristics anal
 NetLoader is a C# tool that loads C# assembly from a path, URL, or SMB share via reflection (a topic for another blog post problaby, but see it as a shellcode runner but for C# assembly) and patches AMSI to bypass it. This means that the malicious C# executable doesn't have to touch the disk at all, which is a good thing for us, and as it bypasses AMSI (another topic for a later blogpost), this could mean bypassing Defender completely. The only thing is, will it be allowed to run? Well, apparently Microsoft hasn't added a signature for NetLoader, because it is!
 
 First success: running any malicious C# executable!
-![SharpHound.exe run successfully]({{site.url}}/assets/images/run_exe.png)
+![SharpHound.exe run successfully]({{site.url}}/blog/assets/images/run_exe.png)
 
 But that wasn't enough for me, I wanted to be able to run PowerShell scripts as well... but that didn't work with NetLoader, so onto another tool for payload delivery and AMSY bypass, [SharpPack](https://github.com/mdsecactivebreach/SharpPack):
 
@@ -135,7 +135,7 @@ So I ended up with a C# executable that I could run with NetLoader, and that can
 
 I added a line at the end of the SharpHound.ps1 script with `Invoke-BloodHound -CollectionMethod All` to load and run SharpHound (although reading MDSec's blogpost again I could have given that line as the last argument to SharpPack probably), and could now run PowerShell scripts!
 
-![SharpHound.ps1 run successfully]({{site.url}}/assets/images/run_powershell.png)
+![SharpHound.ps1 run successfully]({{site.url}}/blog/assets/images/run_powershell.png)
 
 My quest was complete!
 
