@@ -1,11 +1,8 @@
 ---
 title: eLearnSecurity Certified eXploit Developer Review
-layout: single
 categories: [blog]
-permalink: /:categories/:year/:month/:day/:title/
 classes: wide
 toc: true
-show_date: true
 excerpt: "A review of the XDS course/eCXD exam by eLS"
 ---
 
@@ -25,7 +22,7 @@ From OSCP I was comfortable with basic vanilla buffer overflows, debugging with 
 
 From the syllabus I wanted to do specifically the last windows modules:
 
-![XDS Syllabus]({{site.url}}/blog/assets/images/xds-syllabus.png)
+![XDS Syllabus]({{site.url}}/assets/images/xds-syllabus.png)
 
 As I had dabbled with SEH and egghunting earlier in the year in April, but a review would be in order!
 

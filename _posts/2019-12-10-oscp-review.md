@@ -1,17 +1,14 @@
 ---
 title: OSCP Review
-layout: single
 categories: [blog]
-permalink: /:categories/:year/:month/:day/:title/
 classes: wide
 toc: true
-date: 2019-12-10 00:00:00
-show_date: true
+excerpt: "First certification, and first review!"
 ---
 
 So, first blog post had to be about OSCP even if I passed it two months ago, or my buddies in the Infosec Prep discord server would be mad! So here we go, short(ish) review of PWK (the course), OSCP (the exam), what preparation I had, a few pieces of advice, and what's next!
 
-![]({{site.url}}/blog/assets/images/oscp_logo.png)
+![]({{site.url}}/assets/images/oscp_logo.png)
 
 ## UPDATE 25.02.21
 
@@ -36,11 +33,11 @@ I was going full-time on PWK, not having anything else to do with uni, so I must
 
 Two weeks in, I was getting tired of the PWK labs to be honest, and I won't hide that. Some machines were easy as common credentials, all are old a\* f\*\*\*, so old that kernel exploits work on a lot of them, but you'd have to compile them on old VMs, which was a pain. Maybe I should have looked more at privilege escalation routes that didn't use kernel exploits, more than the few times I did, but I was growing tired of the age of the lab and how some machines were really buggy sometimes. I was not looking forward to the next machine on my to-do list, and I needed something fresh. I was longing to go back to HTB as well, since I had focused solely on PWK for the last two weeks, so I decided to go back there and take a break from the PWK labs.
 
-![Back to HTB!]({{site.url}}/blog/assets/images/oscp_htb_logo.png)
+![Back to HTB!]({{site.url}}/assets/images/oscp_htb_logo.png)
 
 That was probably one of the best decisions I've made during my preparation for the exam, taking a break from PWK and working on other sources and other stuff more relevant to the exam. I knew pivoting was part of PWK for example, and I did try that a bit, but it didn't interest me that much and I knew I wouldn't have to pivot in the exam, so scratch that. Instead I took the list of OSCP-like HTB machines, and went through that.
 
-![List of OSCP-like machines]({{site.url}}/blog/assets/images/oscp_htb_machines.jpg)
+![List of OSCP-like machines]({{site.url}}/assets/images/oscp_htb_machines.jpg)
 
 That got me motivated again, and it taught me a lot as well. One thing I should emphasize is that I was taking detailed notes in markdown for each machine to have and go through later, and as a preparation for the exam report. I didn't do the exercises, so no lab report for me (not worth it anyway, going through all the exercises and document them, and documenting 10 machines that have different types of vulns is way too much work for a poor 5 points in my opinion and prepping you for failing on the exam, more on that later), so I could focus on hacking machines.
 

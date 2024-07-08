@@ -1,11 +1,9 @@
 ---
-layout: single
-categories: [blog]
 title: Shellcode writing and new tools
-permalink: /:categories/:year/:month/:day/:title/
+categories: [blog]
 classes: wide
 toc: true
-show_date: true
+excerpt: "Documenting my journey writing shellcode"
 ---
 
 So I was practicing my shellcode writing skills for [XDS](https://www.elearnsecurity.com/course/exploit_development_student/) from eLearnSecurity, and as I was working through the first basic assembly examples, I realized searching for syscalls numbers for different architectures was pretty tedious, like what's the syscall number for `execve` in the i386 or ARM architectures, or what's the declaration for that function, or what are the registers and instructions used for that architecture? Looking around google and asking friends on our Discord server, we didn't find anything helping with that, so I set out on writing my own, and spent the whole evening on it! 

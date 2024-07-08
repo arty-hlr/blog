@@ -1,16 +1,17 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.16.5 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
+
 <html lang="en" class="no-js">
   <head>
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Shellcode writing and new tools - arty-hlr</title>
-<meta name="description" content="So I was practicing my shellcode writing skills for XDS from eLearnSecurity, and as I was working through the first basic assembly examples, I realized searching for syscalls numbers for different architectures was pretty tedious, like what’s the syscall number for execve in the i386 or ARM architectures, or what’s the declaration for that function, or what are the registers and instructions used for that architecture? Looking around google and asking friends on our Discord server, we didn’t find anything helping with that, so I set out on writing my own, and spent the whole evening on it!">
+<meta name="description" content="Documenting my journey writing shellcode">
 
 
 
@@ -18,10 +19,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="arty-hlr">
 <meta property="og:title" content="Shellcode writing and new tools">
-<meta property="og:url" content="http://localhost:4000/blog/2019/12/29/shellcode/">
+<meta property="og:url" content="http://localhost:4000/2019/12/29/shellcode/">
 
 
-  <meta property="og:description" content="So I was practicing my shellcode writing skills for XDS from eLearnSecurity, and as I was working through the first basic assembly examples, I realized searching for syscalls numbers for different architectures was pretty tedious, like what’s the syscall number for execve in the i386 or ARM architectures, or what’s the declaration for that function, or what are the registers and instructions used for that architecture? Looking around google and asking friends on our Discord server, we didn’t find anything helping with that, so I set out on writing my own, and spent the whole evening on it!">
+  <meta property="og:description" content="Documenting my journey writing shellcode">
 
 
 
@@ -36,8 +37,7 @@
 
 
 
-<link rel="canonical" href="http://localhost:4000/blog/2019/12/29/shellcode/">
-
+<link rel="canonical" href="http://localhost:4000/2019/12/29/shellcode/">
 
 
 
@@ -53,32 +53,19 @@
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="arty-hlr Feed">
 
-<!-- https://t.co/dKP3o1e -->
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="arty-hlr Feed">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script>
+<script type="text/javascript">
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
 </script>
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE ]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
 
 
 
@@ -90,19 +77,14 @@
 
   </head>
 
-  <body class="layout--single wide">
+  <body class="layout--single wide" dir="ltr">
     <nav class="skip-links">
-  <h2 class="screen-reader-text">Skip links</h2>
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
     <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
     <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
   </ul>
 </nav>
-
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
 
     
 
@@ -116,16 +98,22 @@
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/" >Home</a>
+              <a
+                href="/"
+                
+                
+              >Home</a>
             </li><li class="masthead__menu-item">
-              <a href="/about/" >About</a>
+              <a
+                href="/about/"
+                
+                
+              >About</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
           <span class="visually-hidden">Toggle search</span>
-          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
-            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
-          </svg>
+          <i class="fas fa-search"></i>
         </button>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -144,21 +132,43 @@
 
 
 
+
+
 <div id="main" role="main">
   
 
+
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Shellcode writing and new tools">
-    <meta itemprop="description" content="So I was practicing my shellcode writing skills for XDS from eLearnSecurity, and as I was working through the first basic assembly examples, I realized searching for syscalls numbers for different architectures was pretty tedious, like what’s the syscall number for execve in the i386 or ARM architectures, or what’s the declaration for that function, or what are the registers and instructions used for that architecture? Looking around google and asking friends on our Discord server, we didn’t find anything helping with that, so I set out on writing my own, and spent the whole evening on it!">
-    <meta itemprop="datePublished" content="December 29, 2019">
+    <meta itemprop="description" content="Documenting my journey writing shellcode">
+    <meta itemprop="datePublished" content="2019-12-29T00:00:00+01:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Shellcode writing and new tools
-</h1>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/2019/12/29/shellcode/" itemprop="url">Shellcode writing and new tools
+</a>
+          </h1>
           
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2019-12-29T00:00:00+01:00">December 29, 2019</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
         </header>
       
 
@@ -167,11 +177,7 @@
           <aside class="sidebar__right ">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu">
-  <li><a href="#shellcode-practice-journey">Shellcode practice journey</a></li>
-  <li><a href="#on-finding-syscall-numbers-and-creating-new-tools-in-bashpython">On finding syscall numbers and creating new tools in bash/python</a></li>
-  <li><a href="#conclusion">Conclusion</a></li>
-</ul>
+              <ul class="toc__menu"><li><a href="#shellcode-practice-journey">Shellcode practice journey</a></li><li><a href="#on-finding-syscall-numbers-and-creating-new-tools-in-bashpython">On finding syscall numbers and creating new tools in bash/python</a></li><li><a href="#conclusion">Conclusion</a></li></ul>
             </nav>
           </aside>
         
@@ -302,29 +308,30 @@ int execve(const char *path, char *const argv[], char *const envp[])
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-12-29T00:00:00+01:00">December 29, 2019</time></p>
-        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2019-12-29T00:00:00+01:00">December 29, 2019</time></p>
+
       </footer>
 
       <section class="page__share">
   
 
-  <a href="https://twitter.com/intent/tweet?text=Shellcode+writing+and+new+tools%20http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2019%2F12%2F29%2Fshellcode%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Shellcode+writing+and+new+tools%20http%3A%2F%2Flocalhost%3A4000%2F2019%2F12%2F29%2Fshellcode%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2019%2F12%2F29%2Fshellcode%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2019%2F12%2F29%2Fshellcode%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2019%2F12%2F29%2Fshellcode%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/2019/12/29/shellcode/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/blog/2019/12/10/oscp-review/" class="pagination--pager" title="OSCP Review
+      <a href="/2019/12/10/oscp-review/" class="pagination--pager" title="OSCP Review
 ">Previous</a>
     
     
-      <a href="/blog/2020/12/15/ecxd-review/" class="pagination--pager" title="eLearnSecurity Certified eXploit Developer Review
+      <a href="/2020/12/15/ecxd-review/" class="pagination--pager" title="eLearnSecurity Certified eXploit Developer Review
 ">Next</a>
     
   </nav>
@@ -336,101 +343,177 @@ int execve(const char *path, char *const argv[], char *const envp[])
 
   
   
-    <div class="page__related">
-      <h4 class="page__related-title">You May Also Enjoy</h4>
-      <div class="grid__wrapper">
-        
-          
+    
+<div class="page__related">
+  
+  <h2 class="page__related-title">You May Also Enjoy</h2>
+  <div class="grid__wrapper">
+    
+      
+      
 
 
 
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/blog/2021/05/06/how-to-bypass-defender/" rel="permalink">How to bypass Defender in a few easy steps
+        <a href="/2021/05/06/how-to-bypass-defender/" rel="permalink">How to bypass Defender in a few easy steps
 </a>
       
     </h2>
     
-    <p class="archive__item-excerpt" itemprop="description">Context
 
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2021-05-06T00:00:00+02:00">May 6, 2021</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">What one can learn about AV bypass during a pentest!
 </p>
   </article>
 </div>
 
-        
-          
+    
+      
+      
 
 
 
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/blog/2021/02/15/crte-review/" rel="permalink">CRTE Bootcamp Review
+        <a href="/2021/02/15/crte-review/" rel="permalink">CRTE Bootcamp Review
 </a>
       
     </h2>
     
-    <p class="archive__item-excerpt" itemprop="description">After a friend of mine went through CRTP, and my Offshore experience, I felt like I wanted to go further with windows and AD stuff in general, and consolidat...</p>
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2021-02-15T00:00:00+01:00">February 15, 2021</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">A review of Altered Security’s advanced AD course
+</p>
   </article>
 </div>
 
-        
-          
+    
+      
+      
 
 
 
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/blog/2020/12/25/offshore-review/" rel="permalink">Offshore Review
+        <a href="/2020/12/25/offshore-review/" rel="permalink">Offshore Review
 </a>
       
     </h2>
     
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2020-12-25T00:00:00+01:00">December 25, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">My journey through HTB’s Offshore Pro Lab!
 </p>
   </article>
 </div>
 
-        
-          
+    
+      
+      
 
 
 
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/blog/2020/12/15/ecxd-review/" rel="permalink">eLearnSecurity Certified eXploit Developer Review
+        <a href="/2020/12/15/ecxd-review/" rel="permalink">eLearnSecurity Certified eXploit Developer Review
 </a>
       
     </h2>
     
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2020-12-15T00:00:00+01:00">December 15, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">A review of the XDS course/eCXD exam by eLS
 </p>
   </article>
 </div>
 
-        
-      </div>
-    </div>
+    
+  </div>
+</div>
+
   
   
 </div>
 
+      
     </div>
 
     
       <div class="search-content">
-        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
     <label class="sr-only" for="search">
       Enter your search term...
     </label>
@@ -452,18 +535,19 @@ int execve(const char *path, char *const argv[], char *const envp[])
 
     
 
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2021 arty-hlr. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2024 <a href="http://localhost:4000">arty-hlr</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
 
     
   <script src="/assets/js/main.min.js"></script>
-  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
 
 
 
@@ -471,7 +555,6 @@ int execve(const char *path, char *const argv[], char *const envp[])
 <script src="/assets/js/lunr/lunr.min.js"></script>
 <script src="/assets/js/lunr/lunr-store.js"></script>
 <script src="/assets/js/lunr/lunr-en.js"></script>
-
 
 
 

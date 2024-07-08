@@ -1,4 +1,4 @@
-remote_theme: "mmistakes/minimal-mistakes@4.16.5"
+remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin: "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
 plugins:
     - jekyll-include-cache
@@ -11,6 +11,7 @@ include:
 
 title: "arty-hlr"
 search: true
+url: https://arty-hlr.github.io/blog
 
 defaults:
   # _posts
@@ -20,5 +21,6 @@ defaults:
     values:
       show_date: true
       layout: single
+      permalink: /:year/:month/:day/:title/
       share: true
       related: true
